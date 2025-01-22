@@ -2,6 +2,7 @@
 using Karen_Store.Common.Role;
 using Karen_Store.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,15 @@ namespace Karen_Store.Persistence.Context
             modelBuilder.Entity<Role>().HasData(new Role { Id = 2, Name = nameof(UserRoles.Operator) });
             modelBuilder.Entity<Role>().HasData(new Role { Id = 3, Name = nameof(UserRoles.Customer) });
             modelBuilder.Entity<Role>().HasData(new Role { Id = 4, Name = nameof(UserRoles.Support) });
+
+
+            //making Email field unique
+            modelBuilder.Entity<User>().HasIndex(u=> u.Email).IsUnique();
+
+            // Filter on removed Users
+            modelBuilder.Entity<User>().HasQueryFilter(p => !p.IsDeleted);
         }
+
     }
  
 }

@@ -1,4 +1,5 @@
 using Karen_Store.Application.Interfaces.Context;
+using Karen_Store.Application.Services.Users.Commands.RegisterUser;
 using Karen_Store.Application.Services.Users.Queries.GetRoles;
 using Karen_Store.Application.Services.Users.Queries.GetUsers;
 using Karen_Store.Persistence.Context;
@@ -14,6 +15,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IDatabaseContext, DataBaseContext>();
 builder.Services.AddScoped<IGetUserService, GetUserService>();
 builder.Services.AddScoped<IGetRoleService, GetRoleService>();
+builder.Services.AddScoped<IRegisterUserServices, RegisterUserServices>();
+
 
 
 var app = builder.Build();

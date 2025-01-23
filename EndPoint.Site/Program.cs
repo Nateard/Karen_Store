@@ -1,12 +1,23 @@
 using Karen_Store.Application.Interfaces.Context;
 using Karen_Store.Application.Services.Users.Commands.RegisterUser;
+using Karen_Store.Application.Services.Users.Commands.RemoveUser;
 using Karen_Store.Application.Services.Users.Queries.GetRoles;
 using Karen_Store.Application.Services.Users.Queries.GetUsers;
 using Karen_Store.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+//using FluentValidation;
+//using FluentValidation.AspNetCore;
+
+//builder.Services.AddControllersWithViews()
+//    .AddFluentValidation(config =>
+//    {
+//        // Automatic registration of all validators in the assembly
+//        config.RegisterValidatorsFromAssemblyContaining<RequestRegisterUserValidator>();
+//    });
 
 var builder = WebApplication.CreateBuilder(args);
+
 string connectionString = @"Data Source=.; Initial Catalog=Karen_store ; Integrated Security=True;TrustServerCertificate=True;
 ";
 // Add services to the container.
@@ -16,6 +27,7 @@ builder.Services.AddScoped<IDatabaseContext, DataBaseContext>();
 builder.Services.AddScoped<IGetUserService, GetUserService>();
 builder.Services.AddScoped<IGetRoleService, GetRoleService>();
 builder.Services.AddScoped<IRegisterUserServices, RegisterUserServices>();
+builder.Services.AddScoped<IRemoveUserService, RemoveUserService>();
 
 
 

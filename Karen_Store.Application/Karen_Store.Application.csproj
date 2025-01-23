@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Karen_Store.Domain\Karen_Store.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Users\Commands\EditUser\" />
+  </ItemGroup>
+
 </Project>

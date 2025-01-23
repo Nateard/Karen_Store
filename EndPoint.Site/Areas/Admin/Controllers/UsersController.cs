@@ -1,4 +1,5 @@
 ﻿using Karen_Store.Application.Services.Users.Commands.RegisterUser;
+using Karen_Store.Application.Services.Users.Commands.RemoveUser;
 using Karen_Store.Application.Services.Users.Queries.GetRoles;
 using Karen_Store.Application.Services.Users.Queries.GetUsers;
 using Microsoft.AspNetCore.Mvc;
@@ -12,12 +13,17 @@ namespace EndPoint.Site.Areas.Admin.Controllers
     {
         private readonly IGetUserService _getUserService;
         private readonly IGetRoleService _getRoleService;
-        private readonly IRegisterUserServices _registeredServices;
-        public UsersController(IGetUserService getUserService, IGetRoleService getRoleService, IRegisterUserServices registerUserServices)
+        private readonly IRegisterUserServices _registerUserService;
+        private readonly IRemoveUserService _removeUserService;
+        public UsersController(IGetUserService getUserService,
+            IGetRoleService getRoleService,
+            IRegisterUserServices registerUserServices,
+            IRemoveUserService removeUserService)
         {
             _getUserService = getUserService;
             _getRoleService = getRoleService;
-            _registeredServices = registerUserServices;
+            _registerUserService = registerUserServices;
+            _removeUserService = removeUserService;
         }
 
         public IActionResult Index(string searchKey, int page)
@@ -30,6 +36,12 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         }
 
 
+        [HttpPost]
+        public IActionResult Delete(long UserId)
+        {
+            return Json(_removeUserService.Execute(UserId));
+        }
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -37,29 +49,30 @@ namespace EndPoint.Site.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(string Email, string Name, string LastName, Guid RoleId, string Password, string RePassword)
+        public IActionResult Create(string Email, string Name, string LastName, int RoleId, string Password, string RePassword)
         {
-            var result = _registeredServices.Execute(new RequestRegisterUserDto
+            var result = _registerUserService.Execute(new RequestRegisterUserDto
             {
-                Password = Password,
-                RePassword = RePassword,
                 Email = Email,
                 Name = Name,
                 LastName = LastName,
-                Roles = new List<RolesInRegistrationDto>
-                {
-                new RolesInRegistrationDto
-                {
-                    Id = RoleId
-                }
-                }
+                Roles = new List<RolesInRegisterUserDto>()
+                   {
+                        new RolesInRegisterUserDto
+                        {
+                             Id= RoleId
+                        }
+                   },
+                Password = Password,
+                RePassword = RePassword,
             });
-            if (result.Data != null)
+            if (result.Data != null )
             {
-                return Json(new { Success = false, Message = "Registration failed." });
+                return Json(result);             
             }
-            return Json(result);
+            return Json(new { Success = false, Message = "Registration failed." });
         }
 
+       
     }
 }

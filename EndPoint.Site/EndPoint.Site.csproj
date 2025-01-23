@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Karen_Store.Application\Karen_Store.Application.csproj" />
     <ProjectReference Include="..\Karen_Store.Persistence\Karen_Store.Persistence.csproj" />
   </ItemGroup>
 

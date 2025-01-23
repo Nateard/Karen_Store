@@ -22,14 +22,14 @@ namespace Karen_Store.Application.Services.Users.Queries.GetRoles
                 return new ResultDto<List<RolesDto>>()
                 {
                     Message = "True",
-                    Success = false,
+                    IsSuccess = false,
                 };
             }
             return new ResultDto<List<RolesDto>>()
             {
                 Data = roles,
                 Message = "True",
-                Success = true,
+                IsSuccess = true,
             };
         }
     }

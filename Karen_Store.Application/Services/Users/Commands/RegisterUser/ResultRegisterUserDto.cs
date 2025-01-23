@@ -2,7 +2,7 @@
 {
     public class ResultRegisterUserDto
     {
-        public Guid Id { get; set; }
+        public long Id { get; set; }
     }
 
 }

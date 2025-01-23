@@ -15,20 +15,17 @@ namespace Karen_Store.Application.Services.Users.Queries.GetUsers
             var users = _context.Users.AsQueryable();
             if (!string.IsNullOrEmpty(request.SearchKey))
             {
-                users = _context.Users.Where(
-                    p => p.IsDeleted == false &&
+                users = _context.Users.Where(p=>
                     p.Name.Contains(request.SearchKey) ||
                     p.LastName.Contains(request.SearchKey) ||
                     p.Email.Contains(request.SearchKey));
             }
             int rowsCount = 0;
-            var result = users.ToPaged(request.Page, 20, out rowsCount).Select(p => new GetUserDto
+            var result = users.ToPaged(request.Page, 20, out rowsCount).Select(p => new GetUsersDto
             {
                 Name = p.Name,
                 LastName = p.LastName,
                 Email = p.Email,
-                Age = p.Age,
-                Balance = p.Balance,
             }).ToList();
             if (!result.Any())
             {

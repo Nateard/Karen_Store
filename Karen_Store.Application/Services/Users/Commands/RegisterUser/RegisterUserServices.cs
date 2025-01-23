@@ -15,12 +15,25 @@ namespace Karen_Store.Application.Services.Users.Commands.RegisterUser
         {
             try
             {
+                //if (request.Password!= request.RePassword)
+                //{
+                //    return new ResultDto<ResultRegisterUserDto>()
+                //    {
+                //        Data = new ResultRegisterUserDto()
+                //        {
+                //            Id = long.Empty,
+                //        },
+                //        Success = true,
+                //        Message = "رمز عبور و تکرار آن برابر نیست"
+                //    };
+                //}
                 User user = new User()
                 {
                     Email = request.Email,
                     Name = request.Name,
                     LastName = request.LastName,
-
+                    Password= request.Password,
+                    
                 };
                 List<UserInRole> userInRole = new List<UserInRole>();
                 foreach (var item in request.Roles)
@@ -45,14 +58,23 @@ namespace Karen_Store.Application.Services.Users.Commands.RegisterUser
                         Id = user.Id,
                     },
                     Message = "ثبت نام کاربر انجام شد",
-                    Success = true,
+                    IsSuccess = true,
                 };
 
             }
             catch (Exception)
             {
 
-                throw;
+                return new ResultDto<ResultRegisterUserDto>()
+                {
+                    Data = new ResultRegisterUserDto()
+                    {
+                        Id = 0,
+                    },
+                    IsSuccess = false,
+                    Message = "ثبت نام کاربر با مشکل مواجه شد"
+                };
+
             }
 
         }

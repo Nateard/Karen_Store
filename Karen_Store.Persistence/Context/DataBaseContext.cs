@@ -32,10 +32,7 @@ namespace Karen_Store.Persistence.Context
             modelBuilder.Entity<Role>().HasData(new Role { Id = 4, Name = nameof(UserRoles.Support) });
 
 
-            //making Email field unique
             modelBuilder.Entity<User>().HasIndex(u=> u.Email).IsUnique();
-
-            // Filter on removed Users
             modelBuilder.Entity<User>().HasQueryFilter(p => !p.IsDeleted);
         }
 

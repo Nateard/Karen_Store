@@ -36,7 +36,7 @@
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
                                             <label for="helpInputTop">پست الکترونیک</label>
-                                            <small class="text-muted"><i>info@bugeto.net</i></small>
+                                            <small class="text-muted"><i>info@KarenStore.com</i></small>
                                             <input type="text" class="form-control" id="email">
                                         </fieldset>
                                     </div>
@@ -44,7 +44,7 @@
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
                                             <label for="basicSelect">نقش</label>
-                                            <select class="form-control" id="RoleId" name="Role" asp-items="@ViewBag.Roles"> 
+                                            <select class="form-control" id="RoleId" name="Role" asp-items="@ViewBag.Roles">
                                             </select>
                                             <p><small class="text-muted">سطح دسترسی کاربر مورد نظر را تعیین کنید</small></p>
 
@@ -87,8 +87,8 @@
 @section Scripts
 {
 
-    <link href="~/Sweetalert2/sweetalert2.min.css" rel="stylesheet" />
-    <script src="~/Sweetalert2/sweetalert2.min.js"></script>
+    <link href="~/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/sweetalert2/sweetalert2.min.js"></script>
 
 
     <script>
@@ -105,14 +105,16 @@
             }).then((result) => {
                 if (result.value) {
 
-                    var fullname = $("#fullname").val();
+                    var Name = $("#Name").val();
+                    var LastName = $("#LastName").val();
                     var email = $("#email").val();
                     var RoleId = $("#RoleId").val();
                     var Password = $("#Password").val();
                     var RePassword = $("#RePassword").val();
 
                     var postData = {
-                        'fullname': fullname,
+                        'Name': Name,
+                        'LastName' : LastName,
                         'email': email,
                         'RoleId': RoleId,
                         'Password': Password,
@@ -134,8 +136,6 @@
                                 ).then(function (isConfirm) {
                                     location.reload();
                                 });
-
-
                             }
                             else {
 
@@ -144,7 +144,6 @@
                                     data.message,
                                     'warning'
                                 ) ;
-
                             }
                         },
                         error: function (request, status, error) {

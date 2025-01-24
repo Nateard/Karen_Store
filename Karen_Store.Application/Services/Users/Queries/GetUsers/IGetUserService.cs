@@ -8,6 +8,6 @@ namespace Karen_Store.Application.Services.Users.Queries.GetUsers
 {
     public interface IGetUserService
     {
-        public ResultGetUserDto Execute(RequestGetUserDto request);
+         ResultGetUserDto Execute(RequestGetUserDto request);
     }
 }

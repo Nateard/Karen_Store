@@ -18,13 +18,10 @@ namespace Karen_Store.Application.Validation.UserValidators
                 .EmailAddress()
                 .WithMessage("لطفا ایمیل را به صورت صحیح وارد کنید");
 
-            RuleFor(o => o.Name)
+            RuleFor(o => o.FullName)
                 .NotEmpty()
                 .WithMessage("لطفا نام را وارد کنید");
 
-            RuleFor(o => o.LastName)
-                .NotEmpty()
-                .WithMessage("لطفا نام خانوادگی را وارد کنید");
 
             RuleFor(o => o.Password)
                 .NotEmpty().WithMessage("رمز عبور را وارد نمایید")

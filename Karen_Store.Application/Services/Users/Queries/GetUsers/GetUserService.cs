@@ -16,16 +16,16 @@ namespace Karen_Store.Application.Services.Users.Queries.GetUsers
             if (!string.IsNullOrEmpty(request.SearchKey))
             {
                 users = _context.Users.Where(p=>
-                    p.Name.Contains(request.SearchKey) ||
-                    p.LastName.Contains(request.SearchKey) ||
+                    p.FullName.Contains(request.SearchKey) ||                   
                     p.Email.Contains(request.SearchKey));
             }
             int rowsCount = 0;
             var result = users.ToPaged(request.Page, 20, out rowsCount).Select(p => new GetUsersDto
             {
-                Name = p.Name,
-                LastName = p.LastName,
+                FullName= p.FullName,
                 Email = p.Email,
+                Id = p.Id,
+                IsActive = p.IsActive,
             }).ToList();
             if (!result.Any())
             {

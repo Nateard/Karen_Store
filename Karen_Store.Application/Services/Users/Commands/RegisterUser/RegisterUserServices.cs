@@ -30,8 +30,7 @@ namespace Karen_Store.Application.Services.Users.Commands.RegisterUser
                 User user = new User()
                 {
                     Email = request.Email,
-                    Name = request.Name,
-                    LastName = request.LastName,
+                    FullName = request.FullName,
                     Password= request.Password,
                     
                 };

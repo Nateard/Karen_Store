@@ -2,6 +2,7 @@
 using Karen_Store.Application.Services.Users.Commands.RemoveUser;
 using Karen_Store.Application.Services.Users.Queries.GetRoles;
 using Karen_Store.Application.Services.Users.Queries.GetUsers;
+using Karen_Store.Domain.Entities.Users;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Internal;
@@ -37,9 +38,9 @@ namespace EndPoint.Site.Areas.Admin.Controllers
 
 
         [HttpPost]
-        public IActionResult Delete(long UserId)
+        public IActionResult Delete (long userId)
         {
-            return Json(_removeUserService.Execute(UserId));
+            return Json(_removeUserService.Execute(userId));
         }
 
         [HttpGet]
@@ -49,22 +50,21 @@ namespace EndPoint.Site.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(string Email, string Name, string LastName, int RoleId, string Password, string RePassword)
+        public IActionResult Create(string email, string fullName, int roleId, string password, string rePassword)
         {
             var result = _registerUserService.Execute(new RequestRegisterUserDto
             {
-                Email = Email,
-                Name = Name,
-                LastName = LastName,
+                Email = email,
+                FullName = fullName,
                 Roles = new List<RolesInRegisterUserDto>()
                    {
                         new RolesInRegisterUserDto
                         {
-                             Id= RoleId
+                             Id= roleId
                         }
                    },
-                Password = Password,
-                RePassword = RePassword,
+                Password = password,
+                RePassword = rePassword,
             });
             if (result.Data != null )
             {

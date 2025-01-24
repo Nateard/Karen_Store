@@ -9,8 +9,7 @@ namespace Karen_Store.Domain.Entities.Users
 {
     public class User :BaseEntity<long>
     {
-        public string Name { get; set; }
-        public string LastName { get; set; }
+        public string FullName { get; set; }
         public string Email { get; set; }
        // public int NationalCode { get; set; }
        // public string PhoneNumber { get; set; }

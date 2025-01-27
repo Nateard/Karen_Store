@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Karen_Store.Application.Interfaces.Context;
 using Karen_Store.Application.Services.Users.Commands.RegisterUser;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Karen_Store.Application.Validation.UserValidators
     {
         public RequestRegisterUserValidator()
         {
+
             RuleFor(o => o.Email)
                 .NotEmpty()
                 .WithMessage("لطفا ایمیل را وارد کنید")
@@ -25,9 +27,11 @@ namespace Karen_Store.Application.Validation.UserValidators
 
             RuleFor(o => o.Password)
                 .NotEmpty().WithMessage("رمز عبور را وارد نمایید")
+                .MinimumLength(5).WithMessage("رمز عبور باید بیشتر از 5 کاراکتر باشد")
                 .Equal(o => o.RePassword).WithMessage("رمز عبور و تکرار آن برابر نیست");
 
         }
+
     }
 }
 

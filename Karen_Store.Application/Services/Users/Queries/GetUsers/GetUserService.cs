@@ -15,14 +15,14 @@ namespace Karen_Store.Application.Services.Users.Queries.GetUsers
             var users = _context.Users.AsQueryable();
             if (!string.IsNullOrEmpty(request.SearchKey))
             {
-                users = _context.Users.Where(p=>
-                    p.FullName.Contains(request.SearchKey) ||                   
+                users = _context.Users.Where(p =>
+                    p.FullName.Contains(request.SearchKey) ||
                     p.Email.Contains(request.SearchKey));
             }
             int rowsCount = 0;
             var result = users.ToPaged(request.Page, 20, out rowsCount).Select(p => new GetUsersDto
             {
-                FullName= p.FullName,
+                FullName = p.FullName,
                 Email = p.Email,
                 Id = p.Id,
                 IsActive = p.IsActive,

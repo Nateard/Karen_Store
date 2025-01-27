@@ -1,11 +1,11 @@
-﻿using Karen_Store.Application.Services.Users.Commands.RegisterUser;
+﻿using Karen_Store.Application.Services.Users.Commands.EditUser;
+using Karen_Store.Application.Services.Users.Commands.RegisterUser;
 using Karen_Store.Application.Services.Users.Commands.RemoveUser;
+using Karen_Store.Application.Services.Users.Commands.UserStatusChange;
 using Karen_Store.Application.Services.Users.Queries.GetRoles;
 using Karen_Store.Application.Services.Users.Queries.GetUsers;
-using Karen_Store.Domain.Entities.Users;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore.Internal;
 
 namespace EndPoint.Site.Areas.Admin.Controllers
 {
@@ -16,15 +16,21 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         private readonly IGetRoleService _getRoleService;
         private readonly IRegisterUserServices _registerUserService;
         private readonly IRemoveUserService _removeUserService;
+        private readonly IChangeUserStatus _changeUserStatus;
+        private readonly IEditUserService _editUserService;
         public UsersController(IGetUserService getUserService,
             IGetRoleService getRoleService,
             IRegisterUserServices registerUserServices,
-            IRemoveUserService removeUserService)
+            IRemoveUserService removeUserService,
+            IChangeUserStatus changeUserStatus,
+            IEditUserService editUserService)
         {
             _getUserService = getUserService;
             _getRoleService = getRoleService;
             _registerUserService = registerUserServices;
             _removeUserService = removeUserService;
+            _changeUserStatus = changeUserStatus;
+            _editUserService = editUserService;
         }
 
         public IActionResult Index(string searchKey, int page)
@@ -38,7 +44,7 @@ namespace EndPoint.Site.Areas.Admin.Controllers
 
 
         [HttpPost]
-        public IActionResult Delete (long userId)
+        public IActionResult Delete(long userId)
         {
             return Json(_removeUserService.Execute(userId));
         }
@@ -66,13 +72,31 @@ namespace EndPoint.Site.Areas.Admin.Controllers
                 Password = password,
                 RePassword = rePassword,
             });
-            if (result.Data != null )
+            if (result.Data != null)
             {
-                return Json(result);             
+                return Json(result);
             }
-            return Json(new { Success = false, Message = "Registration failed." });
+            return Json(new { Success = false, Message = result.Message });
         }
 
-       
+
+        [HttpPost]
+        public IActionResult StatusChange(long userId)
+        {
+            return Json(_changeUserStatus.Execute(userId));
+        }
+
+
+
+        [HttpPost]
+        public IActionResult EditUser(long userId, string fullName, string email)
+        {
+            return Json(_editUserService.Execute(new RequestEditUserDto
+            {
+                Email = email,
+                FullName = fullName,
+                Id = userId
+            }));
+        }
     }
 }

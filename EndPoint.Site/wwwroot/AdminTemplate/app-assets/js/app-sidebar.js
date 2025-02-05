@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  =========================================================
  * Convex Bootstrap 4 admin dashboard template - V1.0
  =========================================================
@@ -10,7 +10,6 @@
 */
 (function(window, document, $) {
     'use strict';
-    
      $(document).ready(function(){
         var $sidebar = $('.app-sidebar'),
         $sidebar_content = $('.sidebar-content'),
@@ -93,7 +92,7 @@
                 }
             });
 
-            
+
 
             setTimeout(function() {
                 $children.addClass('is-shown');
@@ -251,3 +250,4 @@
         }
     });
 })(window, document, jQuery);
+

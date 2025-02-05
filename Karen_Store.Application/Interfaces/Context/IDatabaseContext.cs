@@ -1,4 +1,5 @@
-﻿using Karen_Store.Domain.Entities.Users;
+﻿using Karen_Store.Domain.Entities.Product;
+using Karen_Store.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,10 @@ namespace Karen_Store.Application.Interfaces.Context
 {
     public interface IDatabaseContext
     {
-         DbSet<User> Users { get; set; }
-         DbSet<Role> Role { get; set; }
-         DbSet<UserInRole> UserInRole { get; set; }
+        DbSet<User> Users { get; set; }
+        DbSet<Role> Role { get; set; }
+        DbSet<UserInRole> UserInRole { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();

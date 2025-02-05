@@ -81,7 +81,6 @@ namespace EndPoint.Site.Controllers
                 {
                     claims.Add(new Claim(ClaimTypes.Role, item));
                 }
-
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var principal = new ClaimsPrincipal(identity);
                 var properties = new AuthenticationProperties()
@@ -90,7 +89,6 @@ namespace EndPoint.Site.Controllers
                     ExpiresUtc = DateTime.Now.AddDays(5),
                 };
                 HttpContext.SignInAsync(principal, properties);
-
             }
             return Json(signupResult);
         }

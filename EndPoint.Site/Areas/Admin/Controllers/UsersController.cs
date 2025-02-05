@@ -1,4 +1,5 @@
-﻿using Karen_Store.Application.Services.Users.Commands.EditUser;
+﻿using Karen_Store.Application.Interfaces.FacadePaterns;
+using Karen_Store.Application.Services.Users.Commands.EditUser;
 using Karen_Store.Application.Services.Users.Commands.RegisterUser;
 using Karen_Store.Application.Services.Users.Commands.RemoveUser;
 using Karen_Store.Application.Services.Users.Commands.UserStatusChange;
@@ -12,30 +13,22 @@ namespace EndPoint.Site.Areas.Admin.Controllers
     [Area("Admin")]
     public class UsersController : Controller
     {
-        private readonly IGetUserService _getUserService;
-        private readonly IGetRoleService _getRoleService;
-        private readonly IRegisterUserServices _registerUserService;
-        private readonly IRemoveUserService _removeUserService;
-        private readonly IChangeUserStatus _changeUserStatus;
-        private readonly IEditUserService _editUserService;
-        public UsersController(IGetUserService getUserService,
-            IGetRoleService getRoleService,
-            IRegisterUserServices registerUserServices,
-            IRemoveUserService removeUserService,
-            IChangeUserStatus changeUserStatus,
-            IEditUserService editUserService)
+        //private readonly IGetUserService _getUserService;
+        //private readonly IGetRoleService _getRoleService;
+        //private readonly IRegisterUserServices _registerUserService;
+        //private readonly IRemoveUserService _removeUserService;
+        //private readonly IChangeUserStatus _changeUserStatus;
+        //private readonly IEditUserService _editUserService;
+        private readonly IUserFacade _userFacade;
+        public UsersController(IUserFacade userFacade)
         {
-            _getUserService = getUserService;
-            _getRoleService = getRoleService;
-            _registerUserService = registerUserServices;
-            _removeUserService = removeUserService;
-            _changeUserStatus = changeUserStatus;
-            _editUserService = editUserService;
+            _userFacade = userFacade;
         }
 
         public IActionResult Index(string searchKey, int page)
+        
         {
-            return View(_getUserService.Execute(new RequestGetUserDto
+            return View(_userFacade.GetUserService.Execute(new RequestGetUserDto
             {
                 SearchKey = searchKey,
                 Page = page
@@ -46,19 +39,19 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Delete(long userId)
         {
-            return Json(_removeUserService.Execute(userId));
+            return Json(_userFacade.RemoveUserService.Execute(userId));
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.Roles = new SelectList(_getRoleService.Execute().Data, "Id", "Name");
+            ViewBag.Roles = new SelectList(_userFacade.GetRoleService.Execute().Data, "Id", "Name");
             return View();
         }
         [HttpPost]
         public IActionResult Create(string email, string fullName, int roleId, string password, string rePassword)
         {
-            var result = _registerUserService.Execute(new RequestRegisterUserDto
+            var result = _userFacade.RegisterUserService.Execute(new RequestRegisterUserDto
             {
                 Email = email,
                 FullName = fullName,
@@ -83,7 +76,7 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult StatusChange(long userId)
         {
-            return Json(_changeUserStatus.Execute(userId));
+            return Json(_userFacade.ChangeUserStatus.Execute(userId));
         }
 
 
@@ -91,7 +84,7 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult EditUser(long userId, string fullName, string email)
         {
-            return Json(_editUserService.Execute(new RequestEditUserDto
+            return Json(_userFacade.EditUserService.Execute(new RequestEditUserDto
             {
                 Email = email,
                 FullName = fullName,

@@ -1,17 +1,11 @@
 using Karen_Store.Application.Interfaces.Context;
-using Karen_Store.Application.Services.Users.Commands.EditUser;
-using Karen_Store.Application.Services.Users.Commands.RegisterUser;
-using Karen_Store.Application.Services.Users.Commands.RemoveUser;
-using Karen_Store.Application.Services.Users.Commands.UserLogin;
-using Karen_Store.Application.Services.Users.Commands.UserStatusChange;
-using Karen_Store.Application.Services.Users.Queries.GetRoles;
-using Karen_Store.Application.Services.Users.Queries.GetUsers;
+using Karen_Store.Application.Interfaces.FacadePaterns;
+using Karen_Store.Application.Interfaces.FacadPaterns;
+using Karen_Store.Application.Services.Products.FacadPatern;
+using Karen_Store.Application.Services.Users.FacadePattern;
 using Karen_Store.Persistence.Context;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using static Karen_Store.Application.Services.Users.Commands.UserLogin.IUserLoginService;
 //using FluentValidation;
 //using FluentValidation.AspNetCore;
 
@@ -43,13 +37,10 @@ string connectionString = @"Data Source=.; Initial Catalog=Karen_store ; Integra
 builder.Services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IDatabaseContext, DataBaseContext>();
-builder.Services.AddScoped<IGetUserService, GetUserService>();
-builder.Services.AddScoped<IGetRoleService, GetRoleService>();
-builder.Services.AddScoped<IRegisterUserServices, RegisterUserServices>();
-builder.Services.AddScoped<IRemoveUserService, RemoveUserService>();
-builder.Services.AddScoped<IChangeUserStatus, ChangeUserStatus>();
-builder.Services.AddScoped<IEditUserService, EditUserService>();
-builder.Services.AddScoped<IUserLoginService, UserLoginService>();
+
+// facades
+builder.Services.AddScoped<IProductFacade, ProductFacade>();
+builder.Services.AddScoped<IUserFacade, UserFacade>();
 
 var app = builder.Build();
 

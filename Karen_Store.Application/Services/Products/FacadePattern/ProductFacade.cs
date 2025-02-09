@@ -1,17 +1,27 @@
-﻿using Karen_Store.Application.Interfaces.Context;
+﻿
+using Karen_Store.Application.Interfaces.Context;
 using Karen_Store.Application.Interfaces.FacadPaterns;
 using Karen_Store.Application.Services.Products.Commands.AddNewCategory;
+using Karen_Store.Application.Services.Products.Commands.AddNewProduct;
 using Karen_Store.Application.Services.Products.Commands.DeleteCategories;
 using Karen_Store.Application.Services.Products.Commands.EditCategories;
+using Karen_Store.Application.Services.Products.Queries.GetAllCategories;
 using Karen_Store.Application.Services.Products.Queries.GetCategories;
+using Karen_Store.Application.Services.Products.Queries.GetProducDetailsForSite;
+using Karen_Store.Application.Services.Products.Queries.GetProductDetailForAdmin;
+using Karen_Store.Application.Services.Products.Queries.GetProductForAdmin;
+using Karen_Store.Application.Services.Products.Queries.GetProductsForSite;
+using Microsoft.AspNetCore.Hosting;
 namespace Karen_Store.Application.Services.Products.FacadPatern
 {
     public class ProductFacade : IProductFacade
     {
         private readonly IDatabaseContext _context;
-        public ProductFacade(IDatabaseContext context)
+        private readonly IHostingEnvironment _environment;
+        public ProductFacade(IDatabaseContext context, IHostingEnvironment hostEnvironment)
         {
             _context = context;
+            _environment = hostEnvironment;
         }
 
         private IAddNewCategoryServices _addNewCategory;
@@ -24,8 +34,6 @@ namespace Karen_Store.Application.Services.Products.FacadPatern
             }
         }
 
-        //public IGetCategoriesServices GetCategoriesService => new GetCategoriesServices(_context);
-
         private IGetCategoriesServices _getCategoriesService;
         public IGetCategoriesServices GetCategoriesService =>
             _getCategoriesService ??= new GetCategoriesServices(_context);
@@ -35,9 +43,36 @@ namespace Karen_Store.Application.Services.Products.FacadPatern
         public IRemoveCategoryService RemoveCategoryService =>
             _removeCategoryService ??= new RemoveCategoryService(_context);
 
-        private IEditCategory _editCategory;
-        public IEditCategory EditCategory =>
-            _editCategory ??= new EditCategory(_context);
+        private IEditCategoryService _editCategory;
+        public IEditCategoryService EditCategory =>
+            _editCategory ??= new EditCategoryService(_context);
+
+        private IAddNewProductService _addNewProduct;
+        public IAddNewProductService AddNewProductService =>
+            _addNewProduct ??= new AddNewProductService(_context, _environment);
+
+
+        public IGetAllCategories _getCategories;
+        public IGetAllCategories GetAllCategories =>
+            _getCategories ??= new GetAllCategories (_context);
+
+        public IGetProductForAdminService _getProductForAdmin;
+        public IGetProductForAdminService GetProductForAdmin =>
+            _getProductForAdmin ??= new GetProductForAdminService(_context);
+
+        public IGetProductDetailForAdminService _getProductDetailForSiteService;
+        public IGetProductDetailForAdminService GetProductDetailForSiteService =>
+            _getProductDetailForSiteService ??= new GetProductDetailForAdminService(_context);
+
+        
+        public IGetProductsForSite _getProductsForSite;
+        public IGetProductsForSite GetProductsForSite =>
+            _getProductsForSite ??= new GetProductsForSite(_context);
+
+        public IGetProducDetailsForSite _getProducDetailsForSite;
+        public IGetProducDetailsForSite GetProducDetailsForSite =>
+            _getProducDetailsForSite ??= new GetProducDetailsForSite (_context);
+
     }
 
 }

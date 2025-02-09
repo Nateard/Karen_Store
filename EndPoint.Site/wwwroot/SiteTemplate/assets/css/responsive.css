@@ -241,11 +241,11 @@
         margin-bottom: 35px;
     }
 
-    .shop-archive-content .product-items .product-box{
+    .shop-archive-content .product-items 
+    {
         padding-left: 0;
         padding-right: 0;
     }
-
     .shop-archive-content .product-items .product-box .thumb .discount-d{
         left: 0;
     }
@@ -776,4 +776,5 @@
     .tabs .tabs-content .comments .comments-summary .product-comment-list .article ul.comment-text .footer .comments-likes{
         text-align: right;
     }
+  
 }

@@ -1,6 +1,6 @@
 ﻿namespace Karen_Store.Application.Services.Products.Commands.EditCategories
 {
-    public partial class EditCategory
+    public partial class EditCategoryService
     {
         public class EditCategoryDto
         {

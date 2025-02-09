@@ -1,6 +1,7 @@
 using Karen_Store.Application.Interfaces.Context;
 using Karen_Store.Application.Interfaces.FacadePaterns;
 using Karen_Store.Application.Interfaces.FacadPaterns;
+using Karen_Store.Application.Services.Common.FacadePatterns;
 using Karen_Store.Application.Services.Products.FacadPatern;
 using Karen_Store.Application.Services.Users.FacadePattern;
 using Karen_Store.Persistence.Context;
@@ -36,12 +37,16 @@ string connectionString = @"Data Source=.; Initial Catalog=Karen_store ; Integra
 // Add services to the container.
 builder.Services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddScoped<IDatabaseContext, DataBaseContext>();
 
+
+#region Facades
 // facades
 builder.Services.AddScoped<IProductFacade, ProductFacade>();
 builder.Services.AddScoped<IUserFacade, UserFacade>();
-
+builder.Services.AddScoped<ICommonFacade, CommonFacade>();
+#endregion
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

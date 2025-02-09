@@ -3,10 +3,10 @@ using Karen_Store.Common.Dto;
 
 namespace Karen_Store.Application.Services.Products.Commands.EditCategories
 {
-    public partial class EditCategory : IEditCategory
+    public partial class EditCategoryService : IEditCategoryService
     {
         private readonly IDatabaseContext _context;
-        public EditCategory(IDatabaseContext Context)
+        public EditCategoryService(IDatabaseContext Context)
         {
             _context = Context;
         }

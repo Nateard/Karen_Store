@@ -5,7 +5,7 @@ using Karen_Store.Domain.Entities.Product;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 using static Karen_Store.Application.Services.Products.Commands.AddNewCategory.AddNewCategoryServices;
-using static Karen_Store.Application.Services.Products.Commands.EditCategories.EditCategory;
+using static Karen_Store.Application.Services.Products.Commands.EditCategories.EditCategoryService;
 
 namespace EndPoint.Site.Areas.Admin.Controllers
 {

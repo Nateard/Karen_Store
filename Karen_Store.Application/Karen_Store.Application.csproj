@@ -8,12 +8,19 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.11.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Karen_Store.Common\Karen_Store.Common.csproj" />
     <ProjectReference Include="..\Karen_Store.Domain\Karen_Store.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\Common\Commands\" />
+    <Folder Include="Services\Products\Commands\UploadFile\" />
   </ItemGroup>
 
 </Project>

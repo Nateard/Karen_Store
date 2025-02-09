@@ -56,6 +56,131 @@ namespace Karen_Store.Persistence.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("Karen_Store.Domain.Entities.Product.Product", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("CategoryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeleteTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Displayed")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("InsertDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Inventory")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ViewCount")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Karen_Store.Domain.Entities.Product.ProductFeatures", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime?>("DeleteTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DisplayName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("InsertDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("UpdateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductFeatures");
+                });
+
+            modelBuilder.Entity("Karen_Store.Domain.Entities.Product.ProductImages", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime?>("DeleteTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("InsertDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Src")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImages");
+                });
+
             modelBuilder.Entity("Karen_Store.Domain.Entities.Users.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -173,6 +298,39 @@ namespace Karen_Store.Persistence.Migrations
                     b.Navigation("ParentCategory");
                 });
 
+            modelBuilder.Entity("Karen_Store.Domain.Entities.Product.Product", b =>
+                {
+                    b.HasOne("Karen_Store.Domain.Entities.Product.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Karen_Store.Domain.Entities.Product.ProductFeatures", b =>
+                {
+                    b.HasOne("Karen_Store.Domain.Entities.Product.Product", "Product")
+                        .WithMany("ProductFeatures")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Karen_Store.Domain.Entities.Product.ProductImages", b =>
+                {
+                    b.HasOne("Karen_Store.Domain.Entities.Product.Product", "Product")
+                        .WithMany("ProductImages")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Karen_Store.Domain.Entities.Users.UserInRole", b =>
                 {
                     b.HasOne("Karen_Store.Domain.Entities.Users.Role", "Role")
@@ -195,6 +353,13 @@ namespace Karen_Store.Persistence.Migrations
             modelBuilder.Entity("Karen_Store.Domain.Entities.Product.Category", b =>
                 {
                     b.Navigation("SubCategories");
+                });
+
+            modelBuilder.Entity("Karen_Store.Domain.Entities.Product.Product", b =>
+                {
+                    b.Navigation("ProductFeatures");
+
+                    b.Navigation("ProductImages");
                 });
 
             modelBuilder.Entity("Karen_Store.Domain.Entities.Users.Role", b =>

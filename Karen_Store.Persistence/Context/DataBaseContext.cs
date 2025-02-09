@@ -24,6 +24,9 @@ namespace Karen_Store.Persistence.Context
         public DbSet<Role>Role { get; set; }
         public DbSet<UserInRole>UserInRole { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductFeatures> ProductFeatures { get; set; }
+        public DbSet<ProductImages> ProductImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -43,6 +46,8 @@ namespace Karen_Store.Persistence.Context
         private void DataQueryFilter(ModelBuilder modelBuilder)
         { 
             modelBuilder.Entity<User>().HasQueryFilter(p => !p.IsDeleted);
+            modelBuilder.Entity<Product>().HasQueryFilter(p => !p.IsDeleted);
+            modelBuilder.Entity<Category>().HasQueryFilter(p => !p.IsDeleted);
         }
 
 

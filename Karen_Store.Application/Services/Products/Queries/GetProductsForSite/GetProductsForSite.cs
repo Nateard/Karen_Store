@@ -2,6 +2,8 @@
 using Karen_Store.Common;
 using Karen_Store.Common.Dto;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
+using System.Linq.Expressions;
 
 namespace Karen_Store.Application.Services.Products.Queries.GetProductsForSite
 {
@@ -12,22 +14,48 @@ namespace Karen_Store.Application.Services.Products.Queries.GetProductsForSite
         {
             _context=context;   
         }
-        public ResultDto<ResultProductForSiteDto> Execute(string searchKey, int page, long? CatId)
+        public ResultDto<ResultProductForSiteDto> Execute(OrderBy orderBy, string searchKey, int page,int pageSize, long? CatId)
         {
             try
             {  
-            int tottalrow = 0;
-                var productquery = _context.Products.Where(p => p.Displayed != false)
+            int totalRows = 0;
+                var productQuery = _context.Products.Where(p => p.Displayed != false)
                     .Include(x => x.ProductImages).AsQueryable();
                 if (CatId != null)
                 {
-                    productquery = productquery.Where (p=> p.CategoryId == CatId || p.Category.ParentCategoryId == CatId).AsQueryable();
+                    productQuery = productQuery.Where (p=> p.CategoryId == CatId || p.Category.ParentCategoryId == CatId).AsQueryable();
                 }
                 if (!string.IsNullOrEmpty(searchKey))
                 {
-                    productquery = productquery.Where(p => p.Name.Contains(searchKey.ToString())|| p.Brand.Contains(searchKey) ).AsQueryable();
+                    productQuery = productQuery.Where(p => p.Name.Contains(searchKey.ToString())|| p.Brand.Contains(searchKey) ).AsQueryable();
                 }
-                var product = productquery.ToPaged(page, 5, out tottalrow);
+                switch (orderBy)
+                {
+                    case OrderBy.NotOrder:
+                        productQuery = productQuery.OrderByDescending(p => p.Id).AsQueryable();
+                        break;
+                    case OrderBy.MostVisited:
+                        productQuery = productQuery.OrderByDescending(p => p.ViewCount).AsQueryable();
+                        break;
+                    case OrderBy.Bestselling:
+                        productQuery = productQuery.OrderByDescending(p => p.Id).AsQueryable();
+                        break;
+                    case OrderBy.MostPopular:
+                        productQuery = productQuery.OrderByDescending(p => p.Id).AsQueryable();
+                        break;
+                    case OrderBy.theNewest:
+                        productQuery = productQuery.OrderByDescending(p => p.Id).AsQueryable();
+                        break;
+                    case OrderBy.Cheapest:
+                        productQuery = productQuery.OrderBy(p => p.Price).AsQueryable();
+                        break;
+                    case OrderBy.theMostExpensive:
+                        productQuery = productQuery.OrderByDescending(p => p.Price).AsQueryable();
+                        break;
+                    default:
+                        break;
+                }
+                var product = productQuery.ToPaged(page, pageSize, out totalRows);
                 if (product.Any())
             {
                 return new ResultDto<ResultProductForSiteDto>
@@ -36,7 +64,7 @@ namespace Karen_Store.Application.Services.Products.Queries.GetProductsForSite
                     Message = "successful",
                     Data = new ResultProductForSiteDto
                     {
-                        TottalRows = tottalrow,
+                        TotalRows = totalRows,
                         Products = product.Select(p => new ProductForSiteDto
                         {
                             Id = p.Id,

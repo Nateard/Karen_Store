@@ -28,6 +28,8 @@ namespace Karen_Store.Application.Services.Products.Queries.GetProducDetailsForS
                     Message = "محصول یافت نشد",
                 };
             }
+            product.ViewCount++;
+            _context.SaveChanges();
             return new ResultDto<ProductForSiteDto>
             {
                 IsSuccess = true,  

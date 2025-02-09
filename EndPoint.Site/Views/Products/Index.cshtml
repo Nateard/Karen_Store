@@ -1,8 +1,13 @@
-﻿@using Karen_Store.Application.Services.Products.Queries.GetProductsForSite;
+﻿@addTagHelper *, LazZiya.TagHelpers
+@using Karen_Store.Application.Services.Products.Queries.GetProductsForSite;
 @model ResultProductForSiteDto;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int pageNumber = 1;
+    int pageSize = 20;
+    int.TryParse(Context.Request.Query["page"], out pageNumber);
+    int.TryParse(Context.Request.Query["pageSize"], out pageSize);
 }
 <div class="col-lg-12 col-md-12 col-xs-12 pl">
     <div class="shop-archive-content mt-3 d-block">
@@ -14,22 +19,22 @@
             <div class="nav-sort-tabs-res">
                 <ul class="nav sort-tabs-options" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="Most-visited-tab" data-toggle="tab" href="#Most-visited" role="tab" aria-controls="Most-visited" aria-selected="true">پربازدیدترین</a>
+                        <a class="nav-link active" id="Most-visited-tab"  href="~/products?searchKey=@Context.Request.Query["searchKey"]&CatId=@Context.Request.Query["CatId"]&orderby=MostVisited" role="tab" aria-controls="Most-visited" aria-selected="true">پربازدیدترین</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="Bestselling-tab" data-toggle="tab" href="#Bestselling" role="tab" aria-controls="Bestselling" aria-selected="false">پرفروش&zwnj;ترین&zwnj;</a>
+                        <a class="nav-link" id="Bestselling-tab" href="~/products?searchKey=@Context.Request.Query["searchKey"]&CatId=@Context.Request.Query["CatId"]&orderby=Bestselling" role="tab" role="tab" aria-controls="Bestselling" aria-selected="false">پرفروش&zwnj;ترین&zwnj;</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="Most-Popular-tab" data-toggle="tab" href="#Most-Popular" role="tab" aria-controls="Most-Popular" aria-selected="false">محبوب&zwnj;ترین</a>
+                        <a class="nav-link" id="Most-Popular-tab" href="~/products?searchKey=@Context.Request.Query["searchKey"]&CatId=@Context.Request.Query["CatId"]&orderby=MostPopular" role="tab" role="tab" aria-controls="Most-Popular" aria-selected="false">محبوب&zwnj;ترین</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="newest-tab" data-toggle="tab" href="#newest" role="tab" aria-controls="newest" aria-selected="false">جدیدترین</a>
+                        <a class="nav-link" id="newest-tab" href="~/products?searchKey=@Context.Request.Query["searchKey"]&CatId=@Context.Request.Query["CatId"]&orderby=theNewest" role="tab" role="tab" aria-controls="newest" aria-selected="false">جدیدترین</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="cheapest-tab" data-toggle="tab" href="#cheapest" role="tab" aria-controls="cheapest" aria-selected="false">ارزان&zwnj;ترین</a>
+                        <a class="nav-link" id="cheapest-tab" href="~/products?searchKey=@Context.Request.Query["searchKey"]&CatId=@Context.Request.Query["CatId"]&orderby=Cheapest" role="tab" role="tab" aria-controls="cheapest" aria-selected="false">ارزان&zwnj;ترین</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="most-expensive-tab" data-toggle="tab" href="#most-expensive" role="tab" aria-controls="most-expensive" aria-selected="false">گران&zwnj;ترین</a>
+                        <a class="nav-link" id="most-expensive-tab" href="~/products?searchKey=@Context.Request.Query["searchKey"]&CatId=@Context.Request.Query["CatId"]&orderby=theMostExpensive" role="tab" role="tab" aria-controls="most-expensive" aria-selected="false">گران&zwnj;ترین</a>
                     </li>
                 </ul>
             </div>
@@ -38,7 +43,7 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="Most-visited" role="tabpanel" aria-labelledby="Most-visited-tab">
                     <div class="row">
-                        @if(Model != null)
+                        @if(Model.Products.Any())
                         {
                         @foreach (var item in Model.Products)
                         {
@@ -68,29 +73,49 @@
         </div>
         <div class="pagination-product">
             <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">«</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link active" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">»</span>
-                        </a>
-                    </li>
-                </ul>
+                <paging total-records="@Model.TotalRows"
+                        page-no="@pageNumber ==0?1:pageNumber"
+                        page-size="@pageSize ==0?20:pageNumber"
+                        show-prev-next="true"
+                        show-total-pages="false"
+                        show-total-records="false"
+                        show-page-size-nav="true"
+                        show-first-numbered-page="true"
+                        show-last-numbered-page="true"
+                        query-string-key-page-no="Page"
+                        query-string-key-page-size="PageSize"
+                        query-string-value="@@(Request.QueryString.Value)"
+                        gap-size="2">
+                </paging>
+
             </nav>
         </div>
     </div>
 </div>
 
+
+@*text-page-size="Items per page:"
+    text-total-pages="pages"
+    text-total-records="records"
+    text-first="&laquo;"
+    text-last="&raquo;"
+    text-previous="&lsaquo;"
+    text-next="&rsaquo;"
+    sr-text-first="First"
+    sr-text-last="Last"
+    sr-text-previous="Previous"
+    sr-text-next="Next"
+
+
+
+     class="row"
+    class-paging-control-div="col"
+    class-info-div="col"
+    class-page-size-div="col"
+    class-paging-control="pagination"
+    class-active-page="disabled"
+    class-disabled-jumping-button="disabled"
+    class-total-pages="badge badge-secondary"
+    class-total-records="badge badge-info"
+
+*@

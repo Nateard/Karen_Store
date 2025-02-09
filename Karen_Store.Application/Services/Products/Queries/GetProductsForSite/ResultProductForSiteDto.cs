@@ -3,6 +3,6 @@
     public class ResultProductForSiteDto
     {
         public List<ProductForSiteDto> Products { get; set; }
-        public int TottalRows { get; set; } 
+        public int TotalRows { get; set; } 
     }
 }

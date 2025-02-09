@@ -9,6 +9,6 @@ namespace Karen_Store.Application.Services.Products.Queries.GetProductsForSite
 {
     public interface IGetProductsForSite
     {
-        ResultDto<ResultProductForSiteDto> Execute(string searchKey ,int page , long? CatId);
+        ResultDto<ResultProductForSiteDto> Execute(OrderBy orderBy,string searchKey ,int page ,int pageSize, long? CatId);
     }
 }

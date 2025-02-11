@@ -1,6 +1,8 @@
-﻿namespace Karen_Store.Domain.Entities.Users
+﻿using Karen_Store.Domain.Entities.Common;
+
+namespace Karen_Store.Domain.Entities.Users
 {
-    public class Role
+    public class Role:BaseEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }

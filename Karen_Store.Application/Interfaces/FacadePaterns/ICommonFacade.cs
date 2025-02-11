@@ -1,12 +1,6 @@
 ﻿using Karen_Store.Application.Services.Common.Queries.GetCategory;
 using Karen_Store.Application.Services.Common.Queries.GetMenuItem;
-using Karen_Store.Application.Services.Products.Commands.AddNewCategory;
-using Karen_Store.Application.Services.Products.Queries.GetCategories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Karen_Store.Application.Services.HomePage.Quereis.GetSlider;
 
 namespace Karen_Store.Application.Interfaces.FacadePaterns
 {
@@ -14,5 +8,6 @@ namespace Karen_Store.Application.Interfaces.FacadePaterns
     {
         IGetMenuItemService GetMenuItemService { get; }
         IGetCategoryService GetCategoryService { get; }
+      
     }
 }

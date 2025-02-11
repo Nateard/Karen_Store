@@ -1,6 +1,8 @@
-﻿namespace Karen_Store.Domain.Entities.Users
+﻿using Karen_Store.Domain.Entities.Common;
+
+namespace Karen_Store.Domain.Entities.Users
 {
-    public class UserInRole
+    public class UserInRole : BaseEntity
     {
         public long Id { get; set; }
         public virtual User User { get; set; }

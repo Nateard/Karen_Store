@@ -2,20 +2,12 @@ using Karen_Store.Application.Interfaces.Context;
 using Karen_Store.Application.Interfaces.FacadePaterns;
 using Karen_Store.Application.Interfaces.FacadPaterns;
 using Karen_Store.Application.Services.Common.FacadePatterns;
+using Karen_Store.Application.Services.HomePage.FacadePattern;
 using Karen_Store.Application.Services.Products.FacadPatern;
 using Karen_Store.Application.Services.Users.FacadePattern;
 using Karen_Store.Persistence.Context;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-//using FluentValidation;
-//using FluentValidation.AspNetCore;
-
-//builder.Services.AddControllersWithViews()
-//    .AddFluentValidation(config =>
-//    {
-//        // Automatic registration of all validators in the assembly
-//        config.RegisterValidatorsFromAssemblyContaining<RequestRegisterUserValidator>();
-//    });
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthentication(options =>
@@ -46,6 +38,7 @@ builder.Services.AddScoped<IDatabaseContext, DataBaseContext>();
 builder.Services.AddScoped<IProductFacade, ProductFacade>();
 builder.Services.AddScoped<IUserFacade, UserFacade>();
 builder.Services.AddScoped<ICommonFacade, CommonFacade>();
+builder.Services.AddScoped<IHomePageFacade, HomePageFacade>();
 #endregion
 var app = builder.Build();
 

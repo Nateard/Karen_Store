@@ -1,4 +1,5 @@
-﻿using Karen_Store.Domain.Entities.Product;
+﻿using Karen_Store.Domain.Entities.HomePage;
+using Karen_Store.Domain.Entities.Product;
 using Karen_Store.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -20,6 +21,8 @@ namespace Karen_Store.Application.Interfaces.Context
         DbSet<Product> Products { get; set; }
         DbSet<ProductFeatures> ProductFeatures { get; set; }
         DbSet<ProductImages> ProductImages { get; set; }
+        DbSet<Slider> Sliders { get; set; }
+
         #endregion
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();

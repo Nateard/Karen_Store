@@ -13,8 +13,10 @@ namespace Karen_Store.Application.Services.HomePage.Quereis.GetSlider
         {
             var sliders = _context.Sliders.OrderByDescending(p => p.Id).Select(s => new SliderDto
             {
+               Title = s.Name,
                 Link = s.Link,
                 Src = s.Src,
+                Id = s.Id,  
             }).ToList();
 
             if (sliders.Any())
@@ -33,6 +35,4 @@ namespace Karen_Store.Application.Services.HomePage.Quereis.GetSlider
             };
         }
     }
-
-
 }

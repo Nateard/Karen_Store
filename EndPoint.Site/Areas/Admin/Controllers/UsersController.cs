@@ -13,12 +13,6 @@ namespace EndPoint.Site.Areas.Admin.Controllers
     [Area("Admin")]
     public class UsersController : Controller
     {
-        //private readonly IGetUserService _getUserService;
-        //private readonly IGetRoleService _getRoleService;
-        //private readonly IRegisterUserServices _registerUserService;
-        //private readonly IRemoveUserService _removeUserService;
-        //private readonly IChangeUserStatus _changeUserStatus;
-        //private readonly IEditUserService _editUserService;
         private readonly IUserFacade _userFacade;
         public UsersController(IUserFacade userFacade)
         {

@@ -1,4 +1,4 @@
-﻿public class ProductForSiteDto
+﻿public class ProductDetailsForSiteDto
     {
         public long Id { get; set; }
         public string Title { get; set; }

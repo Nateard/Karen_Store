@@ -12,7 +12,7 @@ using Karen_Store.Application.Services.Products.Queries.GetProductDetailForAdmin
 using Karen_Store.Application.Services.Products.Queries.GetProductForAdmin;
 using Karen_Store.Application.Services.Products.Queries.GetProductsForSite;
 using Microsoft.AspNetCore.Hosting;
-namespace Karen_Store.Application.Services.Products.FacadPatern
+namespace Karen_Store.Application.Services.Products.FacadePattern
 {
     public class ProductFacade : IProductFacade
     {

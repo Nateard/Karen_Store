@@ -43,29 +43,35 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="Most-visited" role="tabpanel" aria-labelledby="Most-visited-tab">
                     <div class="row">
-                        @if(Model.Products.Any())
+                        @if (Model?.Products != null && Model.Products.Any())
                         {
-                        @foreach (var item in Model.Products)
-                        {
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-3">
-                                    <a href="~/products/details/@item.Id" class="product-link">
-                                        <section class="product-box product product-type-simple">
-                                            <div class="thumb">
-                                                <img src="~/@item.ImageSrc">
-                                            </div>
-                                            <div class="title">
-                                                @item.Title
-                                            </div>
-                                            <div class="price">
-                                                <span class="amount">
-                                                    @item.Price.ToString("n0")
-                                                    <span>تومان</span>
-                                                </span>
-                                            </div>
-                                        </section>
-                                    </a>
-                                </div>
+                            @foreach (var item in Model.Products)
+                            {
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-3">
+                                        <a href="~/products/details/@item.Id" class="product-link">
+                                            <section class="product-box product product-type-simple">
+                                                <div class="thumb">
+                                                    <img src="~/@item.ImageSrc">
+                                                </div>
+                                                <div class="title">
+                                                    @item.Title
+                                                </div>
+                                                <div class="price">
+                                                    <span class="amount">
+                                                        @item.Price.ToString("n0")
+                                                        <span>تومان</span>
+                                                    </span>
+                                                </div>
+                                            </section>
+                                        </a>
+                                    </div>
+                            }
                         }
+                        else
+                        {
+                            <div class="col-12">
+                                <p class="text-center text-muted">محصولی یافت نشد.</p>
+                            </div>
                         }
                     </div>
                 </div>

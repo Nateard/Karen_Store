@@ -9,6 +9,7 @@ namespace Karen_Store.Domain.Entities.HomePage
 {
     public class Slider: BaseEntity
     {
+        public string Name { get; set; }
         public string Src {  get; set; }
         public string Link { get; set; }
     }

@@ -3,7 +3,7 @@ using Karen_Store.Application.Interfaces.FacadePaterns;
 using Karen_Store.Application.Interfaces.FacadPaterns;
 using Karen_Store.Application.Services.Common.FacadePatterns;
 using Karen_Store.Application.Services.HomePage.FacadePattern;
-using Karen_Store.Application.Services.Products.FacadPatern;
+using Karen_Store.Application.Services.Products.FacadePattern;
 using Karen_Store.Application.Services.Users.FacadePattern;
 using Karen_Store.Persistence.Context;
 using Microsoft.AspNetCore.Authentication.Cookies;

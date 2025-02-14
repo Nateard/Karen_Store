@@ -5,6 +5,5 @@ namespace EndPoint.Site.Models.ViewModels.HomePage
     public class HomePageViewModel 
     {
         public List<SliderDto> Sliders { get; set; }
-
     }
 }

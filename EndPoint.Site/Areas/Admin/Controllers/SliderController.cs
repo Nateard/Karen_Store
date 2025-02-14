@@ -13,7 +13,8 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var sliders = _homePageFacade.GetSliderService.Execute();         
+            return View(sliders.Data);
         }
 
 
@@ -22,9 +23,9 @@ namespace EndPoint.Site.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Add(IFormFile file , string link)
+        public IActionResult Add(IFormFile file , string link, string name)
         {
-            _homePageFacade.AddNewSliderService.Execute(file, link);
+            _homePageFacade.AddNewSliderService.Execute(file, link, name);
             return View();
         }
 

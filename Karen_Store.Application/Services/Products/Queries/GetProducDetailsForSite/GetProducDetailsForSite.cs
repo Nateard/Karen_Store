@@ -12,7 +12,7 @@ namespace Karen_Store.Application.Services.Products.Queries.GetProducDetailsForS
         {
             _context = context;
         }
-        public ResultDto<ProductForSiteDto> Execute(long id)
+        public ResultDto<ProductDetailsForSiteDto> Execute(long id)
         {
             var product = _context.Products
                 .Include(p => p.Category)
@@ -22,7 +22,7 @@ namespace Karen_Store.Application.Services.Products.Queries.GetProducDetailsForS
                 .FirstOrDefault(p=> p.Id == id);
             if (product == null)
             {
-                return new ResultDto<ProductForSiteDto>()
+                return new ResultDto<ProductDetailsForSiteDto>()
                 {
                     IsSuccess = false,  
                     Message = "محصول یافت نشد",
@@ -30,10 +30,10 @@ namespace Karen_Store.Application.Services.Products.Queries.GetProducDetailsForS
             }
             product.ViewCount++;
             _context.SaveChanges();
-            return new ResultDto<ProductForSiteDto>
+            return new ResultDto<ProductDetailsForSiteDto>
             {
                 IsSuccess = true,  
-                Data = new ProductForSiteDto
+                Data = new ProductDetailsForSiteDto
                 {
                     Brand = product.Brand,
                     Category = $"{product.Category.ParentCategory.Name} - {product.Category.Name} ",

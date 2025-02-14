@@ -8,7 +8,7 @@ namespace Karen_Store.Application.Services.HomePage.Commands.AddNewSlider
 {
     public interface IAddNewSliderService
     {
-        ResultDto Execute(IFormFile file, string link);
+        ResultDto Execute(IFormFile file, string link ,string name);
     }
 
     public class AddNewSliderService : IAddNewSliderService
@@ -20,15 +20,16 @@ namespace Karen_Store.Application.Services.HomePage.Commands.AddNewSlider
             _context = context;
             _environment = environment;
         }
-        public ResultDto Execute(IFormFile file, string link)
+        public ResultDto Execute(IFormFile file, string link, string name)
         {
             try
             {
                 var resultUpload = UploadFile(file);
                 Slider slider = new Slider()
                 {
+                    Name = name,
                     Src = resultUpload.FileNameAddress,
-                    Link = link
+                    Link = link              
                 };
                 _context.Sliders.Add(slider);
                 _context.SaveChanges();

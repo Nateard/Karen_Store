@@ -22,6 +22,7 @@ namespace Karen_Store.Application.Interfaces.Context
         DbSet<ProductFeatures> ProductFeatures { get; set; }
         DbSet<ProductImages> ProductImages { get; set; }
         DbSet<Slider> Sliders { get; set; }
+        DbSet<HomePageImages> HomePageImage { get; set; }
 
         #endregion
         int SaveChanges(bool acceptAllChangesOnSuccess);

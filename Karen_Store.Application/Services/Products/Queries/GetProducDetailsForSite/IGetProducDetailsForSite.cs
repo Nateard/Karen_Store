@@ -9,6 +9,6 @@ namespace Karen_Store.Application.Services.Products.Queries.GetProducDetailsForS
 {
     public interface IGetProducDetailsForSite
     {
-        ResultDto<ProductForSiteDto> Execute(long id);
+        ResultDto<ProductDetailsForSiteDto> Execute(long id);
     }
 }

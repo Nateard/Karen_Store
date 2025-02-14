@@ -1,5 +1,5 @@
 ﻿@using Karen_Store.Application.Services.Products.Queries.GetProducDetailsForSite;
-@model ProductForSiteDto
+@model ProductDetailsForSiteDto
 @{
     ViewData["Title"] = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,10 +13,9 @@
                     <i class="mdi mdi-home"></i>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">خانه</a></li>
-                            <li class="breadcrumb-item"><a href="#">کالای دیجیتال</a></li>
-                            <li class="breadcrumb-item"><a href="#">موبایل</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">گوشی موبایل سامسونگ مدل Galaxy Note 10 SM-N970F/DS دو سیم‌کارت ظرفیت 256 گیگابایت</li>
+                            <li class="breadcrumb-item"><a href="#">@Model.Category</a></li>
+                            <li class="breadcrumb-item"><a href="#">@Model.Brand</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">‌ @Model.Title  </li>
                         </ol>
                     </nav>
                 </div>

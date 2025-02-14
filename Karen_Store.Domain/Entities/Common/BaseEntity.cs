@@ -9,11 +9,8 @@ namespace Karen_Store.Domain.Entities.Common
     public abstract class BaseEntity<TKey>
     {
         public TKey Id { get; set; } 
-        //public long InsertByUserId { get; set; }
-        public DateTime InsertDateTime { get; set; } 
-        //public long? UpdateByUserId { get; set; }
+        public DateTime InsertDateTime { get; set; }  = DateTime.Now;   
         public DateTime? UpdateDateTime { get; set; }
-        //public long? DeleteByUserId { get; set; }
         public DateTime? DeleteTime { get; set; }
         public bool IsDeleted { get; set; }
     }

@@ -1,5 +1,6 @@
 ﻿using Karen_Store.Application.Services.HomePage.Commands.AddNewSlider;
 using Karen_Store.Application.Services.HomePage.Quereis.GetSlider;
+using Karen_Store.Application.Services.HomePage.Queries.GetHomePageImage;
 using Karen_Store.Application.Services.HomePages.AddHomePageImages;
 
 namespace Karen_Store.Application.Interfaces.FacadePaterns
@@ -9,5 +10,7 @@ namespace Karen_Store.Application.Interfaces.FacadePaterns
         IAddNewSliderService AddNewSliderService { get; }
         IGetSliderService GetSliderService { get; }
         IAddHomePageImagesService AddHomePageImagesService { get; }
+
+        IGetHomePageImageService GetHomePageImageService { get; }
     }
 }

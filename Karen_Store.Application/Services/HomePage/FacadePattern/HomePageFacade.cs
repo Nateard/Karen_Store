@@ -3,6 +3,7 @@ using Karen_Store.Application.Interfaces.FacadePaterns;
 using Karen_Store.Application.Services.Common.Commands;
 using Karen_Store.Application.Services.HomePage.Commands.AddNewSlider;
 using Karen_Store.Application.Services.HomePage.Quereis.GetSlider;
+using Karen_Store.Application.Services.HomePage.Queries.GetHomePageImage;
 using Karen_Store.Application.Services.HomePages.AddHomePageImages;
 using Microsoft.AspNetCore.Hosting;
 
@@ -30,6 +31,10 @@ namespace Karen_Store.Application.Services.HomePage.FacadePattern
         private IAddHomePageImagesService _addHomePageImagesService;
         public IAddHomePageImagesService AddHomePageImagesService =>
             _addHomePageImagesService ??= new AddHomePageImagesService (_context , _environment);
-        
+
+        private IGetHomePageImageService _getHomePageImageService;
+        public IGetHomePageImageService GetHomePageImageService =>
+            _getHomePageImageService ??= new GetHomePageImageService(_context);
+
     }
 }

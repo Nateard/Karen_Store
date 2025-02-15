@@ -1,4 +1,5 @@
 ﻿@using EndPoint.Site.Models.ViewModels.HomePage;
+@using Karen_Store.Domain.Entities.HomePage
 @model HomePageViewModel;
 @{
     ViewData["Title"] = "Home Page";
@@ -64,12 +65,12 @@
             <div class="adplacement-container-column">
                 <a href="#" class="adplacement-item">
                     <div class="adplacement-sponsored-box">
-                        <img src="~/SiteTemplate/assets/images/adplacement/a-1.jpg">
+                        <img src="~/@Model.PageImages.Where(p=> p.Imagelocation == ImageLocation.L1).FirstOrDefault()?.Src??''">
                     </div>
                 </a>
                 <a href="#" class="adplacement-item">
                     <div class="adplacement-sponsored-box">
-                        <img src="~/SiteTemplate/assets/images/adplacement/a-2.jpg">
+                        <img src="~/@Model.PageImages.Where(p=> p.Imagelocation == ImageLocation.L2).FirstOrDefault()?.Src??''">
                     </div>
                 </a>
             </div>
@@ -78,7 +79,7 @@
             <div class="adplacement-container-column mt-4">
                 <a href="#" class="adplacement-item img-banner">
                     <div class="adplacement-sponsored-box">
-                        <img src="~/SiteTemplate/assets/images/adplacement/a-3.jpg">
+                        <img src="~/@Model.PageImages.Where(p=> p.Imagelocation == ImageLocation.R1).FirstOrDefault()?.Src??''">
                     </div>
                 </a>
             </div>
@@ -477,38 +478,21 @@
             <div class="col-12">
                 <a href="#" class="adplacement-item mb-4">
                     <div class="adplacement-sponsored_box">
-                        <img src="~/SiteTemplate/assets/images/adplacement/a-8.jpg">
+                        <img src="~/@Model.PageImages.Where(p=> p.Imagelocation == ImageLocation.Center).FirstOrDefault()?.Src??''">
                     </div>
                 </a>
             </div>
-            <div class="col-6 col-lg-3 pr">
-                <a href="#" class="adplacement-item">
-                    <div class="adplacement-sponsored_box">
-                        <img src="~/SiteTemplate/assets/images/adplacement/a-4.jpg">
-                    </div>
-                </a>
-            </div>
-            <div class="col-6 col-lg-3 pr">
-                <a href="#" class="adplacement-item">
-                    <div class="adplacement-sponsored_box">
-                        <img src="~/SiteTemplate/assets/images/adplacement/a-5.jpg">
-                    </div>
-                </a>
-            </div>
-            <div class="col-6 col-lg-3 pr">
-                <a href="#" class="adplacement-item">
-                    <div class="adplacement-sponsored_box">
-                        <img src="~/SiteTemplate/assets/images/adplacement/a-6.jpg">
-                    </div>
-                </a>
-            </div>
-            <div class="col-6 col-lg-3 pr">
-                <a href="#" class="adplacement-item">
-                    <div class="adplacement-sponsored_box">
-                        <img src="~/SiteTemplate/assets/images/adplacement/a-7.jpg">
-                    </div>
-                </a>
-            </div>
+            @foreach (var item in @Model.PageImages.Where(p => p.Imagelocation == ImageLocation.G1).ToList())
+            {
+                <div class="col-6 col-lg-3 pr"> 
+                    <a href="#" class="adplacement-item">
+                        <div class="adplacement-sponsored_box">
+                            <img src="@Url.Content($"~/{item.Src.Replace("\\", "/")}")">
+                        </div>
+                    </a>
+                </div>
+            }
+
         </div>
     </div>
 </div>
@@ -835,34 +819,17 @@
         <div class="container-fluid">
             <div class="row pr">
                 <div class="adplacement-container-row">
-                    <div class="col-6 col-lg-3 pr">
-                        <a href="#" class="adplacement-item">
-                            <div class="adplacement-sponsored_box">
-                                <img src="~/SiteTemplate/assets/images/adplacement/a-4.jpg">
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-lg-3 pr">
-                        <a href="#" class="adplacement-item">
-                            <div class="adplacement-sponsored_box">
-                                <img src="~/SiteTemplate/assets/images/adplacement/a-5.jpg">
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-lg-3 pr">
-                        <a href="#" class="adplacement-item">
-                            <div class="adplacement-sponsored_box">
-                                <img src="~/SiteTemplate/assets/images/adplacement/a-6.jpg">
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-lg-3 pr">
-                        <a href="#" class="adplacement-item">
-                            <div class="adplacement-sponsored_box">
-                                <img src="~/SiteTemplate/assets/images/adplacement/a-7.jpg">
-                            </div>
-                        </a>
-                    </div>
+
+                    @foreach (var item in @Model.PageImages.Where(p => p.Imagelocation == ImageLocation.G2).ToList())
+                    {
+                        <div class="col-6 col-lg-3 pr">
+                            <a href="#" class="adplacement-item">
+                                <div class="adplacement-sponsored_box">
+                                    <img src="@Url.Content($"~/{item.Src.Replace("\\", "/")}")">
+                                </div>
+                            </a>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
 using Karen_Store.Application.Interfaces.Context;
 using Karen_Store.Application.Interfaces.FacadePaterns;
 using Karen_Store.Application.Interfaces.FacadPaterns;
+using Karen_Store.Application.Services.Carts;
 using Karen_Store.Application.Services.Common.FacadePatterns;
 using Karen_Store.Application.Services.HomePage.FacadePattern;
 using Karen_Store.Application.Services.Products.FacadePattern;
@@ -32,13 +33,14 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IDatabaseContext, DataBaseContext>();
 
-
+builder.Services.AddScoped<ICartServices, CartServices>();
 #region Facades
 // facades
 builder.Services.AddScoped<IProductFacade, ProductFacade>();
 builder.Services.AddScoped<IUserFacade, UserFacade>();
 builder.Services.AddScoped<ICommonFacade, CommonFacade>();
 builder.Services.AddScoped<IHomePageFacade, HomePageFacade>();
+
 #endregion
 var app = builder.Build();
 

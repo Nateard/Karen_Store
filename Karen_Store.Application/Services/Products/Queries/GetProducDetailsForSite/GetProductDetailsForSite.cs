@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Karen_Store.Application.Services.Products.Queries.GetProducDetailsForSite
 {
-    public class GetProducDetailsForSite : IGetProducDetailsForSite
+    public class GetProductDetailsForSite : IGetProducDetailsForSite
     {
         private readonly IDatabaseContext _context;
 
-        public GetProducDetailsForSite(IDatabaseContext context)
+        public GetProductDetailsForSite(IDatabaseContext context)
         {
             _context = context;
         }

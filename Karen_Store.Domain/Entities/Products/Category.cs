@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Karen_Store.Domain.Entities.Product
+namespace Karen_Store.Domain.Entities.Products
 {
     public class Category:BaseEntity
     {

@@ -1,13 +1,8 @@
-﻿using Karen_Store.Domain.Entities.HomePage;
-using Karen_Store.Domain.Entities.Product;
+﻿using Karen_Store.Domain.Entities.Carts;
+using Karen_Store.Domain.Entities.HomePage;
+using Karen_Store.Domain.Entities.Products;
 using Karen_Store.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Karen_Store.Application.Interfaces.Context
 {
@@ -23,8 +18,11 @@ namespace Karen_Store.Application.Interfaces.Context
         DbSet<ProductImages> ProductImages { get; set; }
         DbSet<Slider> Sliders { get; set; }
         DbSet<HomePageImages> HomePageImage { get; set; }
-
+        DbSet<Cart> Carts { get; set; }
+        DbSet<CartItem> CartItems { get; set; }
         #endregion
+
+
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();
         Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = new CancellationToken());

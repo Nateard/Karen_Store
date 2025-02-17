@@ -1,7 +1,7 @@
 ﻿using Karen_Store.Application.Interfaces.FacadPaterns;
 using Karen_Store.Application.Services.Products.Commands.AddNewProduct;
 using Karen_Store.Application.Services.Products.Queries.GetAllCategories;
-using Karen_Store.Domain.Entities.Product;
+using Karen_Store.Domain.Entities.Products;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 

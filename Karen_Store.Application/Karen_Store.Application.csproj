@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Services\Carts\FacadePattern\" />
     <Folder Include="Services\Common\Commands\" />
     <Folder Include="Services\Products\Commands\UploadFile\" />
   </ItemGroup>

@@ -1,7 +1,7 @@
 ﻿using EndPoint.Site.Models.ViewModels.Common.CategoriesVeiwModel;
 using Karen_Store.Application.Interfaces.FacadPaterns;
 using Karen_Store.Application.Services.Products.Queries.GetCategories;
-using Karen_Store.Domain.Entities.Product;
+using Karen_Store.Domain.Entities.Products;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 using static Karen_Store.Application.Services.Products.Commands.AddNewCategory.AddNewCategoryServices;

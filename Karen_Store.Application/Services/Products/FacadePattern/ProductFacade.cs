@@ -71,7 +71,7 @@ namespace Karen_Store.Application.Services.Products.FacadePattern
 
         public IGetProducDetailsForSite _getProducDetailsForSite;
         public IGetProducDetailsForSite GetProducDetailsForSite =>
-            _getProducDetailsForSite ??= new GetProducDetailsForSite (_context);
+            _getProducDetailsForSite ??= new GetProductDetailsForSite (_context);
 
     }
 

@@ -1,12 +1,6 @@
 ﻿using Karen_Store.Domain.Entities.Common;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Karen_Store.Domain.Entities.Product
+namespace Karen_Store.Domain.Entities.Products
 {
     public class Product : BaseEntity<long>
     {

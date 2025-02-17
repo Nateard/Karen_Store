@@ -1,6 +1,7 @@
 using EndPoint.Site.Models;
 using EndPoint.Site.Models.ViewModels.HomePage;
 using Karen_Store.Application.Interfaces.FacadePaterns;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -18,6 +19,13 @@ namespace EndPoint.Site.Controllers
 
         public IActionResult Index()
         {
+            Response.Cookies.Append("message", "welcome to asp.net", new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = Request.IsHttps,
+                Path = Request.PathBase.HasValue ? Request.PathBase.ToString() : "/",
+                Expires = DateTime.Now.AddDays(100)
+            });
             HomePageViewModel homePage = new HomePageViewModel()
             {
                 Sliders = _homePageFacade.GetSliderService.Execute().Data,
@@ -26,9 +34,25 @@ namespace EndPoint.Site.Controllers
 
             return View(homePage);
         }
+        public IActionResult ReadCookie()
+        {
+            string cookieValue;
+            if (Request.Cookies.TryGetValue("Message", out cookieValue))
+            {
+                return Ok(cookieValue);
+            } 
+           return NotFound("???? ???? ???");
+        }
+        
+        public IActionResult RemoveCookie()
+        {
+            Response.Cookies.Delete("Message");
+            return Ok();
+        }
 
         public IActionResult Privacy()
         {
+           
             return View();
         }
 

@@ -1,7 +1,7 @@
 ﻿using Karen_Store.Application.Interfaces.Context;
 using Karen_Store.Application.Validation.CategoryValidation;
 using Karen_Store.Common.Dto;
-using Karen_Store.Domain.Entities.Product;
+using Karen_Store.Domain.Entities.Products;
 
 namespace Karen_Store.Application.Services.Products.Commands.AddNewCategory
 {

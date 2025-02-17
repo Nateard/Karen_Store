@@ -1,5 +1,5 @@
 ﻿using Karen_Store.Common.Dto;
-using Karen_Store.Domain.Entities.Product;
+using Karen_Store.Domain.Entities.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;

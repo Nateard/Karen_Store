@@ -1,6 +1,6 @@
 ﻿using Karen_Store.Domain.Entities.Common;
 
-namespace Karen_Store.Domain.Entities.Product
+namespace Karen_Store.Domain.Entities.Products
 {
     public class ProductFeatures : BaseEntity<long>
     {

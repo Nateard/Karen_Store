@@ -1,6 +1,6 @@
 ﻿using Karen_Store.Application.Interfaces.Context;
 using Karen_Store.Common.Dto;
-using Karen_Store.Domain.Entities.Product;
+using Karen_Store.Domain.Entities.Products;
 using Microsoft.EntityFrameworkCore;
 namespace Karen_Store.Application.Services.Products.Queries.GetProductDetailForAdmin
 {

@@ -16,8 +16,8 @@ namespace EndPoint.Site.ViewComponents
         }
         public IViewComponentResult Invoke()
         {
-
-            return View(viewName: "Cart", _cartServices.GetMyCart(_cookiesManager.GetBrowserId(HttpContext)).Data);
+            var userId = ClaimUtility.GetUserId(HttpContext.User);
+            return View(viewName: "Cart", _cartServices.GetMyCart(_cookiesManager.GetBrowserId(HttpContext), userId).Data);
         }
     }
 }

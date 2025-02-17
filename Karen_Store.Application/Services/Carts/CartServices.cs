@@ -68,7 +68,7 @@ namespace Karen_Store.Application.Services.Carts
 
         }
 
-        public ResultDto<CartDto> GetMyCart(Guid browserId)
+        public ResultDto<CartDto> GetMyCart(Guid browserId, long? userId)
         {
             var cart = _context.Carts
                 .Include(p => p.CartItems)
@@ -77,6 +77,12 @@ namespace Karen_Store.Application.Services.Carts
                 .Where(p => p.BrowserId == browserId && p.IsFinished == false)
                 .OrderByDescending(p => p.Id)
                 .FirstOrDefault();
+            if (userId!= null)
+            {
+                var user = _context.Users.Find(userId);
+                cart.User = user;
+                _context.SaveChanges();
+            }
             if (cart != null)
             {
                 {

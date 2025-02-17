@@ -7,19 +7,19 @@ using System.Security.Claims;
 using static Karen_Store.Application.Services.Users.Commands.UserLogin.IUserLoginService;
 using EndPoint.Site.Models.ViewModels.AuthenticationViewModel;
 using Karen_Store.Application.Validation.UserValidators;
+using Karen_Store.Application.Interfaces.FacadePaterns;
 
 namespace EndPoint.Site.Controllers
 {
     public class AuthenticationController : Controller
     {
-        private readonly IRegisterUserServices _registerUserServices;
-        private readonly IUserLoginService _userLoginServices;
-        public AuthenticationController(IRegisterUserServices registerUserServices,
-            IUserLoginService userLoginServices
-            )
+        private readonly IUserFacade _userFacade;
+        //private readonly IUserLoginService _userLoginServices;
+        public AuthenticationController(IUserFacade userFacade )
         {
-            _registerUserServices = registerUserServices;
-            _userLoginServices = userLoginServices;
+            _userFacade = userFacade;   
+            //_registerUserServices = registerUserServices;
+            //_userLoginServices = userLoginServices;
         }
         [HttpGet]
         public IActionResult SignUp()
@@ -30,7 +30,7 @@ namespace EndPoint.Site.Controllers
         [HttpPost]
         public IActionResult SignUp(SignupViewModel request)
         {
-            var singUpResult = _registerUserServices.Execute(new RequestRegisterUserDto
+            var singUpResult = _userFacade.RegisterUserService.Execute(new RequestRegisterUserDto
             {
                 Email = request.Email,
                 FullName = request.FullName,
@@ -67,7 +67,7 @@ namespace EndPoint.Site.Controllers
         [HttpPost]
         public IActionResult Signin(string Email, string Password, string url = "/")
         {
-            var signupResult = _userLoginServices.Execute(Email, Password);
+            var signupResult = _userFacade.UserLoginService.Execute(Email, Password);
             if (signupResult.IsSuccess == true)
             {
                 var claims = new List<Claim>()

@@ -837,7 +837,39 @@ header.header-main{
 .header-main-nav .divider-space-card .header-cart-basket .widget-shopping-cart .widget-shopping-cart-content ul.product-list-widget li.mini-cart-item a.mini-cart-item-image img{
     max-width: 100%;
 }
+    /* نام محصول */
+    .header-main-nav .divider-space-card .header-cart-basket .widget-shopping-cart .widget-shopping-cart-content ul.product-list-widget li.mini-cart-item .mini-cart-item-content .product-name-card {
+        line-height: 1.5; /* افزایش فاصله خطوط */
+        font-size: 14px; /* اندازه فونت کمی بزرگتر */
+        text-overflow: ellipsis;
+        width: 100%;
+        color: #9c9c9c;
+        font-weight: 600;
+    }
 
+    /* تغییرات برای variation */
+    .header-main-nav .divider-space-card .header-cart-basket .widget-shopping-cart .widget-shopping-cart-content ul.product-list-widget li.mini-cart-item .mini-cart-item-content .variation {
+        color: #999;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 1.5; /* افزایش فاصله خطوط */
+    }
+
+        /* استفاده از flex برای تنظیم راحت‌تر span داخل variation */
+        .header-main-nav .divider-space-card .header-cart-basket .widget-shopping-cart .widget-shopping-cart-content ul.product-list-widget li.mini-cart-item .mini-cart-item-content .variation span {
+            display: inline-block; /* به جای float */
+            padding-left: 3px;
+        }
+
+    /* تنظیمات قیمت */
+    .header-main-nav .divider-space-card .header-cart-basket .widget-shopping-cart .widget-shopping-cart-content ul.product-list-widget li.mini-cart-item .mini-cart-item-content .quantity {
+        color: #999;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 1.5; /* افزایش فاصله خطوط */
+    }
+
+/*
 .header-main-nav .divider-space-card .header-cart-basket .widget-shopping-cart .widget-shopping-cart-content ul.product-list-widget li.mini-cart-item .mini-cart-item-content .product-name-card{
     line-height: 0;
     font-size: 12px;
@@ -864,7 +896,7 @@ header.header-main{
     font-weight: 400;
     font-size: 12px;
     line-height: 0;
-}
+}*/
 
 .header-main-nav .divider-space-card .header-cart-basket .widget-shopping-cart .widget-shopping-cart-content .mini-card-total{
     color: #00bfd6;
@@ -7743,3 +7775,4 @@ body.light .progress-wrap svg.progress-circle path {
 .custom-select-ui select {
     min-width: 150px; /* برای جلوگیری از کوچک شدن بیش از حد */
 }
+

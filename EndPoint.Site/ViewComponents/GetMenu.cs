@@ -12,8 +12,8 @@ namespace EndPoint.Site.ViewComponents
         }
         public IViewComponentResult Invoke()
         {
-            var menueItem = _commonFacade.GetMenuItemService.Execute();
-            return View(viewName:"GetMenu", menueItem.Data);
+            var menuItem = _commonFacade.GetMenuItemService.Execute();
+            return View(viewName:"GetMenu", menuItem.Data);
         }
     }
 }

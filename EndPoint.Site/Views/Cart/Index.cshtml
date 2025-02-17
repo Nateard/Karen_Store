@@ -24,7 +24,6 @@
 
                             @foreach (var item in Model.CartItems)
                             {
-
                                 <tr>
                                     <th scope="row" class="product-cart-name">
                                         <div class="product-thumbnail-img">
@@ -50,10 +49,8 @@
                                                 <input type="number" min="1" max="100" step="1"
                                                     readonly
                                                        value="@item.Count"
-                                                       id="count-@item.Id"
-                                                       onblur="handleInputChange('@item.Id')"
-                                                       onchange="handleInputChange('@item.Id')"
-                                                       onkeydown="handleEnter(event, '@item.Id')">
+                                                       id="count-@item.Id" 
+                                                       >
                                                 <div class="quantity-nav">
                                                     <div class="quantity-button quantity-up" onclick="AddCount('@item.Id')">+</div>
                                                     <div class="quantity-button quantity-down" onclick="lowCount('@item.Id')">-</div>

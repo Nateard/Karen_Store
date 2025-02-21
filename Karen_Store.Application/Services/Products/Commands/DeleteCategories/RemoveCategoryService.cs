@@ -5,8 +5,8 @@ namespace Karen_Store.Application.Services.Products.Commands.DeleteCategories
 {
     public class RemoveCategoryService : IRemoveCategoryService
     {
-        private readonly IDatabaseContext _context;
-        public RemoveCategoryService(IDatabaseContext Context)
+        private readonly IDataBaseContext _context;
+        public RemoveCategoryService(IDataBaseContext Context)
         {
             _context = Context;
         }

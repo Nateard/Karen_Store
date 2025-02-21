@@ -12,9 +12,9 @@ namespace Karen_Store.Application.Services.Products.Queries.GetProductDetailForA
 
     public class GetProductDetailForAdminService : IGetProductDetailForAdminService
     {
-        private readonly IDatabaseContext _context;
+        private readonly IDataBaseContext _context;
 
-        public GetProductDetailForAdminService(IDatabaseContext context)
+        public GetProductDetailForAdminService(IDataBaseContext context)
         {
             _context = context;
         }

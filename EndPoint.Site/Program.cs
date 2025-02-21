@@ -3,19 +3,29 @@ using Karen_Store.Application.Interfaces.FacadePaterns;
 using Karen_Store.Application.Interfaces.FacadPaterns;
 using Karen_Store.Application.Services.Carts;
 using Karen_Store.Application.Services.Common.FacadePatterns;
+using Karen_Store.Application.Services.Finance.FacadePattern;
 using Karen_Store.Application.Services.HomePage.FacadePattern;
 using Karen_Store.Application.Services.Products.FacadePattern;
 using Karen_Store.Application.Services.Users.FacadePattern;
+using Karen_Store.Common.Role;
 using Karen_Store.Persistence.Context;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddAuthorization(option =>
+{
+    option.AddPolicy(UserRoles.Admin, policy => policy.RequireRole(UserRoles.Admin));
+    option.AddPolicy(UserRoles.Support, policy => policy.RequireRole(UserRoles.Support));
+    option.AddPolicy(UserRoles.Customer, policy => policy.RequireRole(UserRoles.Customer));
+});
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+
 })
 .AddCookie(options =>
 {
@@ -31,7 +41,7 @@ string connectionString = @"Data Source=.; Initial Catalog=Karen_store ; Integra
 builder.Services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<IDatabaseContext, DataBaseContext>();
+builder.Services.AddScoped<IDataBaseContext, DataBaseContext>();
 
 builder.Services.AddScoped<ICartServices, CartServices>();
 #region Facades
@@ -40,7 +50,7 @@ builder.Services.AddScoped<IProductFacade, ProductFacade>();
 builder.Services.AddScoped<IUserFacade, UserFacade>();
 builder.Services.AddScoped<ICommonFacade, CommonFacade>();
 builder.Services.AddScoped<IHomePageFacade, HomePageFacade>();
-
+builder.Services.AddScoped<IPaymentFacade, PaymentFacade>();
 #endregion
 var app = builder.Build();
 
@@ -58,8 +68,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+
 app.UseAuthentication();
+app.UseAuthorization();
+
 
 app.MapStaticAssets();
 

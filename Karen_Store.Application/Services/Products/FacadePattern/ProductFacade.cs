@@ -16,9 +16,9 @@ namespace Karen_Store.Application.Services.Products.FacadePattern
 {
     public class ProductFacade : IProductFacade
     {
-        private readonly IDatabaseContext _context;
+        private readonly IDataBaseContext _context;
         private readonly IHostingEnvironment _environment;
-        public ProductFacade(IDatabaseContext context, IHostingEnvironment hostEnvironment)
+        public ProductFacade(IDataBaseContext context, IHostingEnvironment hostEnvironment)
         {
             _context = context;
             _environment = hostEnvironment;

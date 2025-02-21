@@ -8,8 +8,8 @@ namespace Karen_Store.Application.Services.Users.Commands.RegisterUser
 {
     public class RegisterUserServices : IRegisterUserServices
     {
-        private readonly IDatabaseContext _context;
-        public RegisterUserServices(IDatabaseContext context)
+        private readonly IDataBaseContext _context;
+        public RegisterUserServices(IDataBaseContext context)
         {
             _context = context;
         }

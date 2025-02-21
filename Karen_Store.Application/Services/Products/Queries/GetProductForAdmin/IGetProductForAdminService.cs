@@ -12,8 +12,8 @@ namespace Karen_Store.Application.Services.Products.Queries.GetProductForAdmin
 
     public class GetProductForAdminService : IGetProductForAdminService
     {
-        private readonly IDatabaseContext _context;
-        public GetProductForAdminService(IDatabaseContext context)
+        private readonly IDataBaseContext _context;
+        public GetProductForAdminService(IDataBaseContext context)
         {
             _context = context;
         }

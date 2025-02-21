@@ -5,8 +5,8 @@ namespace Karen_Store.Application.Services.Users.Commands.RemoveUser
 {
     public class RemoveUserService : IRemoveUserService
     {
-        private readonly IDatabaseContext _context;
-        public RemoveUserService(IDatabaseContext context)
+        private readonly IDataBaseContext _context;
+        public RemoveUserService(IDataBaseContext context)
         {
                 _context = context;
         }

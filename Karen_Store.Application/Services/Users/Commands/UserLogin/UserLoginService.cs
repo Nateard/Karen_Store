@@ -11,8 +11,8 @@ namespace Karen_Store.Application.Services.Users.Commands.UserLogin
     {
         public class UserLoginService : IUserLoginService
         {
-            private readonly IDatabaseContext _context;
-            public UserLoginService(IDatabaseContext context)
+            private readonly IDataBaseContext _context;
+            public UserLoginService(IDataBaseContext context)
             {
                 _context = context;
             }

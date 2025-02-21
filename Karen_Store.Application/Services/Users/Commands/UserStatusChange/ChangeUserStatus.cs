@@ -5,8 +5,8 @@ namespace Karen_Store.Application.Services.Users.Commands.UserStatusChange
 {
     public class ChangeUserStatus : IChangeUserStatus
     {
-        private readonly IDatabaseContext _context;
-        public ChangeUserStatus(IDatabaseContext context)
+        private readonly IDataBaseContext _context;
+        public ChangeUserStatus(IDataBaseContext context)
         {
             _context = context;
         }

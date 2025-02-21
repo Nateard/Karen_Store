@@ -5,8 +5,8 @@ namespace Karen_Store.Application.Services.Users.Queries.GetUsers
 {
     public class GetUserService : IGetUserService
     {
-        private readonly IDatabaseContext _context;
-        public GetUserService(IDatabaseContext context)
+        private readonly IDataBaseContext _context;
+        public GetUserService(IDataBaseContext context)
         {
             _context = context;
         }

@@ -6,8 +6,8 @@ namespace Karen_Store.Application.Services.Carts
 {
     public class CartServices : ICartServices
     {
-        private readonly IDatabaseContext _context;
-        public CartServices(IDatabaseContext context)
+        private readonly IDataBaseContext _context;
+        public CartServices(IDataBaseContext context)
         {
             _context = context;
         }
@@ -77,7 +77,7 @@ namespace Karen_Store.Application.Services.Carts
                 .Where(p => p.BrowserId == browserId && p.IsFinished == false)
                 .OrderByDescending(p => p.Id)
                 .FirstOrDefault();
-            if (userId!= null)
+            if (userId!= null && cart.UserId!= null)
             {
                 var user = _context.Users.Find(userId);
                 cart.User = user;

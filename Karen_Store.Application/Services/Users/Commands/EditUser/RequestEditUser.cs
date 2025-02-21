@@ -6,8 +6,8 @@ namespace Karen_Store.Application.Services.Users.Commands.EditUser
 {
     public class EditUserService : IEditUserService
     {
-        private readonly IDatabaseContext _context;
-        public EditUserService(IDatabaseContext context)
+        private readonly IDataBaseContext _context;
+        public EditUserService(IDataBaseContext context)
         {
             _context = context;
         }

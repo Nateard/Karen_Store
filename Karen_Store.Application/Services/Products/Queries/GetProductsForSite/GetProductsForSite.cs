@@ -9,8 +9,8 @@ namespace Karen_Store.Application.Services.Products.Queries.GetProductsForSite
 {
     public class GetProductsForSite : IGetProductsForSite
     {
-        private readonly IDatabaseContext _context;
-        public GetProductsForSite(IDatabaseContext context)
+        private readonly IDataBaseContext _context;
+        public GetProductsForSite(IDataBaseContext context)
         {
             _context=context;   
         }

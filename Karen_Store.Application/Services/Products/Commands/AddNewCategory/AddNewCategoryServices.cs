@@ -7,8 +7,8 @@ namespace Karen_Store.Application.Services.Products.Commands.AddNewCategory
 {
     public partial class AddNewCategoryServices : IAddNewCategoryServices
     {
-        private readonly IDatabaseContext _context;
-        public AddNewCategoryServices(IDatabaseContext context)
+        private readonly IDataBaseContext _context;
+        public AddNewCategoryServices(IDataBaseContext context)
         {
             _context = context;
         }

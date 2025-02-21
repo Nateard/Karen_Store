@@ -14,8 +14,8 @@ namespace Karen_Store.Application.Services.HomePage.Commands.AddNewSlider
     public class AddNewSliderService : IAddNewSliderService
     {
         public readonly IHostingEnvironment _environment;
-        private readonly IDatabaseContext _context;
-        public AddNewSliderService(IDatabaseContext context, IHostingEnvironment environment)
+        private readonly IDataBaseContext _context;
+        public AddNewSliderService(IDataBaseContext context, IHostingEnvironment environment)
         {
             _context = context;
             _environment = environment;

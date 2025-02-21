@@ -7,8 +7,8 @@ namespace Karen_Store.Application.Services.Products.Queries.GetCategories
     public class GetCategoriesServices : IGetCategoriesServices
 
     {
-        private readonly IDatabaseContext _context;
-        public GetCategoriesServices(IDatabaseContext context)
+        private readonly IDataBaseContext _context;
+        public GetCategoriesServices(IDataBaseContext context)
         {
             _context = context;
         }

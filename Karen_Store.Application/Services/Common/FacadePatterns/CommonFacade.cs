@@ -9,9 +9,9 @@ namespace Karen_Store.Application.Services.Common.FacadePatterns
 {
     public class CommonFacade : ICommonFacade
     {
-        private readonly IDatabaseContext _context;
+        private readonly IDataBaseContext _context;
         private readonly IHostingEnvironment _environment;
-        public CommonFacade(IDatabaseContext context, IHostingEnvironment environment)
+        public CommonFacade(IDataBaseContext context, IHostingEnvironment environment)
         {
             _context = context;
             _environment = environment;

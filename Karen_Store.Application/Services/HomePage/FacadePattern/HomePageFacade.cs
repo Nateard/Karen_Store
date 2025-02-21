@@ -12,9 +12,9 @@ namespace Karen_Store.Application.Services.HomePage.FacadePattern
 {
     public class HomePageFacade : IHomePageFacade
     {
-        private readonly IDatabaseContext _context;
+        private readonly IDataBaseContext _context;
         private readonly IHostingEnvironment _environment;
-        public HomePageFacade(IDatabaseContext context, IHostingEnvironment hostEnvironment)
+        public HomePageFacade(IDataBaseContext context, IHostingEnvironment hostEnvironment)
         {
             _context = context;
             _environment = hostEnvironment;

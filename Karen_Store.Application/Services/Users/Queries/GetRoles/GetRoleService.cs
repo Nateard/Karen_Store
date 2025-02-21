@@ -5,8 +5,8 @@ namespace Karen_Store.Application.Services.Users.Queries.GetRoles
 {
     public class GetRoleService : IGetRoleService
     {
-        private readonly IDatabaseContext _context;
-        public GetRoleService(IDatabaseContext context)
+        private readonly IDataBaseContext _context;
+        public GetRoleService(IDataBaseContext context)
         {
             _context = context;
         }

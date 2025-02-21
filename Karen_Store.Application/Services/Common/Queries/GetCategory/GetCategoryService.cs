@@ -4,8 +4,8 @@ namespace Karen_Store.Application.Services.Common.Queries.GetCategory
 {
     public class GetCategoryService : IGetCategoryService
     {
-        private readonly IDatabaseContext _context;
-        public GetCategoryService(IDatabaseContext context)
+        private readonly IDataBaseContext _context;
+        public GetCategoryService(IDataBaseContext context)
         {
             _context = context;
         }

@@ -5,8 +5,8 @@ namespace Karen_Store.Application.Services.Products.Commands.EditCategories
 {
     public partial class EditCategoryService : IEditCategoryService
     {
-        private readonly IDatabaseContext _context;
-        public EditCategoryService(IDatabaseContext Context)
+        private readonly IDataBaseContext _context;
+        public EditCategoryService(IDataBaseContext Context)
         {
             _context = Context;
         }

@@ -1,4 +1,5 @@
 ﻿using Karen_Store.Domain.Entities.Carts;
+using Karen_Store.Domain.Entities.Finance;
 using Karen_Store.Domain.Entities.HomePage;
 using Karen_Store.Domain.Entities.Products;
 using Karen_Store.Domain.Entities.Users;
@@ -6,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Karen_Store.Application.Interfaces.Context
 {
-    public interface IDatabaseContext
+    public interface IDataBaseContext
     {
         #region Dbsets
         DbSet<User> Users { get; set; }
@@ -20,6 +21,7 @@ namespace Karen_Store.Application.Interfaces.Context
         DbSet<HomePageImages> HomePageImage { get; set; }
         DbSet<Cart> Carts { get; set; }
         DbSet<CartItem> CartItems { get; set; }
+        DbSet<RequestPay> RequestPays { get; set; }
         #endregion
 
 

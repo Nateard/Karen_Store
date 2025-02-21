@@ -5,8 +5,8 @@ namespace Karen_Store.Application.Services.HomePage.Queries.GetHomePageImage
 {
     public class GetHomePageImageService : IGetHomePageImageService
     {
-        private readonly IDatabaseContext _context;
-        public GetHomePageImageService(IDatabaseContext context)
+        private readonly IDataBaseContext _context;
+        public GetHomePageImageService(IDataBaseContext context)
         {
             _context = context; 
         }

@@ -4,8 +4,8 @@ namespace Karen_Store.Application.Services.HomePage.Quereis.GetSlider
 {
     public class GetSliderService : IGetSliderService
     {
-        private readonly IDatabaseContext _context;
-        public GetSliderService(IDatabaseContext context)
+        private readonly IDataBaseContext _context;
+        public GetSliderService(IDataBaseContext context)
         {
             _context = context;
         }

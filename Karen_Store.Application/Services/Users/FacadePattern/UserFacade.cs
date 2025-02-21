@@ -18,8 +18,8 @@ namespace Karen_Store.Application.Services.Users.FacadePattern
 {
     public class UserFacade : IUserFacade
     {
-        private readonly IDatabaseContext _context;
-        public UserFacade(IDatabaseContext context)
+        private readonly IDataBaseContext _context;
+        public UserFacade(IDataBaseContext context)
         {
             _context = context;
         }

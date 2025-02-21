@@ -8,9 +8,9 @@ namespace Karen_Store.Application.Services.Products.Commands.AddNewProduct
 {
     public class AddNewProductService : IAddNewProductService
     {
-        private readonly IDatabaseContext _context;
+        private readonly IDataBaseContext _context;
         private readonly IHostingEnvironment _environment;
-        public AddNewProductService(IDatabaseContext Context, IHostingEnvironment hostingEnvironment)
+        public AddNewProductService(IDataBaseContext Context, IHostingEnvironment hostingEnvironment)
         {
             _context = Context;
             _environment = hostingEnvironment;

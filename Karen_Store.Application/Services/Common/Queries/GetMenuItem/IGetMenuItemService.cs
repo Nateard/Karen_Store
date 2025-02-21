@@ -16,8 +16,8 @@ namespace Karen_Store.Application.Services.Common.Queries.GetMenuItem
 
     public class GetMenuItemService : IGetMenuItemService
     {
-        private readonly IDatabaseContext _context;
-        public GetMenuItemService(IDatabaseContext context)
+        private readonly IDataBaseContext _context;
+        public GetMenuItemService(IDataBaseContext context)
         {
              _context = context;    
         }

@@ -7,9 +7,9 @@ namespace Karen_Store.Application.Services.HomePages.AddHomePageImages
 {
     public class AddHomePageImagesService : IAddHomePageImagesService
     {
-        private readonly IDatabaseContext _context;
+        private readonly IDataBaseContext _context;
         private readonly IHostingEnvironment _environment;
-        public AddHomePageImagesService(IDatabaseContext context, IHostingEnvironment hosting)
+        public AddHomePageImagesService(IDataBaseContext context, IHostingEnvironment hosting)
         {
             _context = context;
             _environment = hosting;

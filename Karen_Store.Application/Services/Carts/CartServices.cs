@@ -77,7 +77,10 @@ namespace Karen_Store.Application.Services.Carts
                 .Where(p => p.BrowserId == browserId && p.IsFinished == false)
                 .OrderByDescending(p => p.Id)
                 .FirstOrDefault();
-            if (userId!= null && cart.UserId!= null)
+         
+
+            
+            if (userId!= null && cart.UserId== null)
             {
                 var user = _context.Users.Find(userId);
                 cart.User = user;

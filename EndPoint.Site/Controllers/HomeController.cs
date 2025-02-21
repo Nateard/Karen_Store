@@ -28,8 +28,8 @@ namespace EndPoint.Site.Controllers
             });
             HomePageViewModel homePage = new HomePageViewModel()
             {
-                Sliders = _homePageFacade.GetSliderService.Execute().Data,
-                PageImages = _homePageFacade.GetHomePageImageService.Execute().Data,
+                Sliders = _homePageFacade.GetSliderService.Execute(),
+                PageImages = _homePageFacade.GetHomePageImageService.Execute(),
             };
 
             return View(homePage);

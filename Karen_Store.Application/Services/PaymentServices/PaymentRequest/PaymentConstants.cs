@@ -1,4 +1,4 @@
-﻿namespace Karen_Store.Application.Services.PaymentServices
+﻿namespace Karen_Store.Application.Services.PaymentServices.PaymrntRequest
 {
     public class PaymentConstants
     {

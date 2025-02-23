@@ -5,7 +5,7 @@ using Karen_Store.Application.Services.Carts;
 using Karen_Store.Application.Services.Common.FacadePatterns;
 using Karen_Store.Application.Services.Finance.FacadePattern;
 using Karen_Store.Application.Services.HomePage.FacadePattern;
-using Karen_Store.Application.Services.PaymentServices;
+using Karen_Store.Application.Services.PaymentServices.FacadePatterns;
 using Karen_Store.Application.Services.Products.FacadePattern;
 using Karen_Store.Application.Services.Users.FacadePattern;
 using Karen_Store.Common.Role;
@@ -51,8 +51,8 @@ builder.Services.AddScoped<IProductFacade, ProductFacade>();
 builder.Services.AddScoped<IUserFacade, UserFacade>();
 builder.Services.AddScoped<ICommonFacade, CommonFacade>();
 builder.Services.AddScoped<IHomePageFacade, HomePageFacade>();
-builder.Services.AddScoped<IPaymentFacade, PaymentFacade>();
-builder.Services.AddScoped<IPaymentproviderFacade, PaymentproviderFacade>();
+builder.Services.AddScoped<IFinanceFacade, FinanceFacade>();
+builder.Services.AddScoped<IPaymentproviderFacade, PaymentProviderFacade>();
 #endregion
 var app = builder.Build();
 

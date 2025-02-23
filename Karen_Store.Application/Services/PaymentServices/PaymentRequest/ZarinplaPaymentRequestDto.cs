@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Karen_Store.Application.Services.PaymentServices
+namespace Karen_Store.Application.Services.PaymentServices.PaymrntRequest
 {
     public class ZarinplaPaymentRequestDto
     {
@@ -21,5 +21,18 @@ namespace Karen_Store.Application.Services.PaymentServices
 
         [JsonProperty("callback_url")]
         public string CallbackUrl { get; set; }
+    }
+
+
+    public class ZarinplaVerificationRequestDto
+    {
+        [JsonProperty("merchant_id")]
+        public string MerchantId { get; set; }
+
+        [JsonProperty("authority")]
+        public string Authority { get; set; }
+
+        [JsonProperty("amount")]
+        public int Amount { get; set; }
     }
 }

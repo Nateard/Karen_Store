@@ -1,13 +1,12 @@
-﻿using Karen_Store.Application.Services.Users.Commands.RegisterUser;
-using Karen_Store.Application.Services.Users.Commands.UserLogin;
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using EndPoint.Site.Models.ViewModels.AuthenticationViewModel;
+using EndPoint.Site.Utilities;
+using Karen_Store.Application.Interfaces.FacadePaterns;
+using Karen_Store.Application.Services.Carts;
+using Karen_Store.Application.Services.Users.Commands.RegisterUser;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using static Karen_Store.Application.Services.Users.Commands.UserLogin.IUserLoginService;
-using EndPoint.Site.Models.ViewModels.AuthenticationViewModel;
-using Karen_Store.Application.Validation.UserValidators;
-using Karen_Store.Application.Interfaces.FacadePaterns;
 
 namespace EndPoint.Site.Controllers
 {
@@ -15,11 +14,13 @@ namespace EndPoint.Site.Controllers
     {
         private readonly IUserFacade _userFacade;
         //private readonly IUserLoginService _userLoginServices;
-        public AuthenticationController(IUserFacade userFacade )
+        private readonly CookiesManager _cookieManager;
+        private readonly ICartServices _cartServices;
+        public AuthenticationController(IUserFacade userFacade, ICartServices cartServices)
         {
-            _userFacade = userFacade;   
-            //_registerUserServices = registerUserServices;
-            //_userLoginServices = userLoginServices;
+            _userFacade = userFacade;
+            _cartServices = cartServices;
+            _cookieManager = new CookiesManager();
         }
         [HttpGet]
         public IActionResult SignUp()
@@ -58,11 +59,16 @@ namespace EndPoint.Site.Controllers
                     IsPersistent = true
                 };
                 HttpContext.SignInAsync(principal, properties);
-
+                var browserId = _cookieManager.GetBrowserId(HttpContext);
+                var userId = ClaimUtility.GetUserId(HttpContext.User);
+                var cart = _cartServices.GetMyCartByBrowserId(browserId);
+                if (cart.IsSuccess)
+                {
+                    _cartServices.AssignCurrentCartToUser(browserId, userId);
+                }
             }
             return Json(singUpResult);
         }
-
 
         [HttpPost]
         public IActionResult Signin(string Email, string Password, string url = "/")
@@ -89,12 +95,16 @@ namespace EndPoint.Site.Controllers
                     ExpiresUtc = DateTime.Now.AddDays(5),
                 };
                 HttpContext.SignInAsync(principal, properties);
+                
             }
+            
+            //_cartServices.GetCurrentUserCart(signupResult.Data.UserId);
             return Json(signupResult);
         }
 
         public IActionResult Signin(string ReturnUrl = "/")
         {
+          
             ViewBag.url = ReturnUrl;
             return View();
         }

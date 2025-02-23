@@ -2,6 +2,7 @@
 {
     public class CartDto
     {
+        public long? UserId { get; set; }
         public int ProductCount { get; set; }
         public int SumAmount { get; set; }
         public long ProductId { get; set; }

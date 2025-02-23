@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System.Net;
 using System.Text;
 
-namespace Karen_Store.Application.Services.PaymentServices
+namespace Karen_Store.Application.Services.PaymentServices.PaymrntRequest
 {
     public interface IPaymentStrategy<T>
     {
@@ -29,11 +29,9 @@ namespace Karen_Store.Application.Services.PaymentServices
                 var requestBody = JsonConvert.SerializeObject(input);
                 var content = new StringContent(requestBody, Encoding.UTF8, "application/json");
 
-                // ساخت درخواست HTTP
                 var request = new HttpRequestMessage(HttpMethod.Post, "https://sandbox.zarinpal.com/pg/v4/payment/request.json");
                 request.Content = content;
 
-                // ارسال درخواست
                 var response = await client.SendAsync(request);
                 if (response.StatusCode == HttpStatusCode.OK)
                 {

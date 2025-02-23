@@ -1,7 +1,6 @@
 using EndPoint.Site.Models;
 using EndPoint.Site.Models.ViewModels.HomePage;
 using Karen_Store.Application.Interfaces.FacadePaterns;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -11,7 +10,7 @@ namespace EndPoint.Site.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IHomePageFacade _homePageFacade;
-        public HomeController(ILogger<HomeController> logger , IHomePageFacade homePageFacade)
+        public HomeController(ILogger<HomeController> logger, IHomePageFacade homePageFacade)
         {
             _homePageFacade = homePageFacade;
             _logger = logger;
@@ -40,10 +39,10 @@ namespace EndPoint.Site.Controllers
             if (Request.Cookies.TryGetValue("Message", out cookieValue))
             {
                 return Ok(cookieValue);
-            } 
-           return NotFound("???? ???? ???");
+            }
+            return NotFound("???? ???? ???");
         }
-        
+
         public IActionResult RemoveCookie()
         {
             Response.Cookies.Delete("Message");
@@ -52,7 +51,6 @@ namespace EndPoint.Site.Controllers
 
         public IActionResult Privacy()
         {
-           
             return View();
         }
 

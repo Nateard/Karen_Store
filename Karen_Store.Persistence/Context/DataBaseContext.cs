@@ -3,6 +3,7 @@ using Karen_Store.Common.Role;
 using Karen_Store.Domain.Entities.Carts;
 using Karen_Store.Domain.Entities.Finance;
 using Karen_Store.Domain.Entities.HomePage;
+using Karen_Store.Domain.Entities.Orders;
 using Karen_Store.Domain.Entities.Products;
 using Karen_Store.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,8 @@ namespace Karen_Store.Persistence.Context
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<RequestPay> RequestPays { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             SeedData(modelBuilder);
@@ -54,7 +57,9 @@ namespace Karen_Store.Persistence.Context
             modelBuilder.Entity<Cart>().HasQueryFilter(p => !p.IsDeleted);
             modelBuilder.Entity<CartItem>().HasQueryFilter(p => !p.IsDeleted);
             modelBuilder.Entity<RequestPay>().HasQueryFilter(p => !p.IsDeleted);
-        }
+            modelBuilder.Entity<Order>().HasQueryFilter(p => !p.IsDeleted);
+            modelBuilder.Entity<OrderDetail>().HasQueryFilter(p => !p.IsDeleted);
+    }
     }
 
 }

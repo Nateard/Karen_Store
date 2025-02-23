@@ -1,10 +1,12 @@
-﻿namespace Karen_Store.Application.Services.PaymentServices
+﻿using Karen_Store.Application.Services.PaymentServices.PaymrntRequest;
+
+namespace Karen_Store.Application.Services.PaymentServices.FacadePatterns
 {
     public interface IPaymentproviderFacade
     {
         IPaymentStrategy<ZarinplaPaymentRequestDto> Zarinpal { get; }
     }
-    public class PaymentproviderFacade : IPaymentproviderFacade
+    public class PaymentProviderFacade : IPaymentproviderFacade
     {
         public IPaymentStrategy<ZarinplaPaymentRequestDto> Zarinpal =>
             new PaymentStrategy();

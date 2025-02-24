@@ -9,5 +9,7 @@ namespace EndPoint.Site.Models.ViewModels.HomePage
         public ResultDto<List<SliderDto>> Sliders { get; set; }
 
         public ResultDto<List<HomePageImageDto>> PageImages { get; set;}
+
+
     }
 }

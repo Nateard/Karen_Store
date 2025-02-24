@@ -1,6 +1,7 @@
 ﻿using EndPoint.Site.Utilities;
 using Karen_Store.Application.Interfaces.FacadePaterns;
 using Karen_Store.Application.Services.Carts;
+using Karen_Store.Application.Services.Orders.Commands;
 using Karen_Store.Application.Services.PaymentServices.FacadePatterns;
 using Karen_Store.Application.Services.PaymentServices.PaymentVerification;
 using Karen_Store.Application.Services.PaymentServices.PaymrntRequest;
@@ -21,6 +22,7 @@ namespace EndPoint.Site.Controllers
         private readonly ICartServices _cartService;
         private readonly CookiesManager _cookiesManager;
         private readonly IPaymentproviderFacade _zarinPalProvider;
+        private readonly IAddNewOrder _addNewOrder;
         //private readonly Payment _payment;
         //private readonly Authority _authority;
         //private readonly Transactions _transactions;
@@ -29,9 +31,10 @@ namespace EndPoint.Site.Controllers
 
 
         public PayController(
-             ICartServices cartService, IFinanceFacade financeFacade, IPaymentproviderFacade zarinPalProvider
+             ICartServices cartService, IFinanceFacade financeFacade, IPaymentproviderFacade zarinPalProvider , IAddNewOrder addNewOrder
              )
         {
+            _addNewOrder = addNewOrder; 
             _financeFacade = financeFacade;
             _cartService = cartService;
             _cookiesManager = new CookiesManager();
@@ -47,14 +50,14 @@ namespace EndPoint.Site.Controllers
             long? UserId = ClaimUtility.GetUserId(User);
             ResultDto<CartDto>? cart = null;
 
-            if (UserId == null)
-            {
-                cart = _cartService.GetMyCartByBrowserId(_cookiesManager.GetBrowserId(HttpContext));
-            }
-            else
-            {
+            //if (UserId == null)
+            //{
+            //    cart = _cartService.GetMyCartByBrowserId(_cookiesManager.GetBrowserId(HttpContext));
+            //}
+            //else
+            //{
                  cart = _cartService.GetMyCartByUserId(UserId);
-            }
+            //}
             if (cart.Data.SumAmount > 0)
             {
                 var requestPay = _financeFacade.AddRequestPayService.Execute(cart.Data.SumAmount, UserId.Value);
@@ -137,7 +140,15 @@ namespace EndPoint.Site.Controllers
                 // بررسی نتیجه پرداخت
                 if (verificationResult.Status == 100 || verificationResult.Status == 101) // 100 و 101 به معنی موفقیت پرداخت هستند
                 {
-                    return Ok(verificationResult);
+                    var userId = ClaimUtility.GetUserId(User);
+                    var cart = _cartService.GetMyCartByUserId(userId).Data;
+                    _addNewOrder.Execute( new RequestAddNewOrderDto
+                    {
+                        CartId = cart.CartId,
+                        UserId = userId.Value,
+                        RequestPayId = requestPay.Data.Id,
+                    });
+                    return RedirectToAction("Index", "Orders");
                 }
                 else
                 {

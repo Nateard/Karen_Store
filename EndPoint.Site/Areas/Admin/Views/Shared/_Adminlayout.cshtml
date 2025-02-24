@@ -1,4 +1,5 @@
-﻿@{
+﻿@using EndPoint.Site.Utilities;
+@{
     Layout = null;
 }
 
@@ -66,16 +67,36 @@
                         </li>
 
                         <li class="has-sub nav-item">
-                            <a href="#"><i class="icon-crop"></i><span data-i18n="" class="menu-title">  دسته بندی ها </span></a>
+                            <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت سفارشات</span></a>
                             <ul class="menu-content">
                                 <li>
-                                    <a href="~/admin/categories/" class="menu-item">دسته بندی ها</a>
+                                    <a href="~/admin/orders/index?orderState=Processing" class="menu-item">در حال پردازش</a>
                                 </li>
                                 <li>
-                                    <a href="~/admin/categories/addnewcategory" class="menu-item">افزودن دسته بندی جدید *</a>
+                                    <a href="~/admin/orders/index?orderState=Delivered" class="menu-item">تحویل شده ها </a>
+                                </li>
+                                <li>
+                                    <a href="~/admin/orders/index?orderState=Canceled" class="menu-item"> لغو شده</a>
                                 </li>
                             </ul>
                         </li>
+
+                      @*   @if (ClaimUtility.GetRolse(User).Where(p => p == "Operator").Count() >= 1)
+                        {
+                            <li class="has-sub nav-item">
+                                <a href="#"><i class="icon-crop"></i><span data-i18n="" class="menu-title">  دسته بندی ها </span></a>
+                                <ul class="menu-content">
+                                    <li>
+                                        <a href="~/admin/categories/" class="menu-item">دسته بندی ها</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/admin/categories/addnewcategory" class="menu-item">افزودن دسته بندی جدید *</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        } *@
+
                         <li class="has-sub nav-item">
                             <a href="#"><i class="icon-crop"></i><span data-i18n="" class="menu-title"> محصولات </span></a>
                             <ul class="menu-content">
@@ -87,17 +108,18 @@
                                 </li>
                             </ul>
                         </li>
+
+
                         <li class="has-sub nav-item">
-                            <a href="#"><i class="icon-crop"></i><span data-i18n="" class="menu-title">  مدیریت اسلایدر ها  </span></a>
+                            <a href="#"><i class="icon-crop"></i><span data-i18n="" class="menu-title"> مدیریت فاکتورها </span></a>
                             <ul class="menu-content">
                                 <li>
-                                    <a href="~/admin/Slider/" class="menu-item">اسلایدر ها</a>
+                                    <a href="~/admin/RequestPay/" class="menu-item">لیست  </a>
                                 </li>
-                                <li>
-                                    <a href="~/admin/Slider/Add" class="menu-item">افزودن اسلایدر جدید *</a>
-                                </li>
+
                             </ul>
                         </li>
+
                     </ul>
                 </div>
             </div>
@@ -420,8 +442,10 @@
         </div>
     </div>
     <!-- BEGIN VENDOR JS-->
+
+
     <script src="~/AdminTemplate/app-assets/vendors/js/core/jquery-3.3.1.min.js"></script>
-    <script src="~/AdminTemplate/app-assets/js/persian-datepicker.min.js"></script> 
+    <script src="~/AdminTemplate/app-assets/js/persian-datepicker.min.js"></script>
     <script src="~/AdminTemplate/app-assets/vendors/js/core/popper.min.js"></script>
     <script src="~/AdminTemplate/app-assets/vendors/js/core/bootstrap.min.js"></script>
     <script src="~/AdminTemplate/app-assets/vendors/js/perfect-scrollbar.jquery.min.js"></script>

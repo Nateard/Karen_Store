@@ -5,6 +5,9 @@ using Karen_Store.Application.Services.Carts;
 using Karen_Store.Application.Services.Common.FacadePatterns;
 using Karen_Store.Application.Services.Finance.FacadePattern;
 using Karen_Store.Application.Services.HomePage.FacadePattern;
+using Karen_Store.Application.Services.Orders.Commands;
+using Karen_Store.Application.Services.Orders.Queries.GetOrdersForAdmin;
+using Karen_Store.Application.Services.Orders.Queries.GetUserOrders;
 using Karen_Store.Application.Services.PaymentServices.FacadePatterns;
 using Karen_Store.Application.Services.Products.FacadePattern;
 using Karen_Store.Application.Services.Users.FacadePattern;
@@ -12,6 +15,7 @@ using Karen_Store.Common.Role;
 using Karen_Store.Persistence.Context;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using static Karen_Store.Application.Services.Finance.Queries.GetRequestPayForAdmin.IGetRequestPayForAdmin;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthorization(option =>
@@ -45,6 +49,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IDataBaseContext, DataBaseContext>();
 
 builder.Services.AddScoped<ICartServices, CartServices>();
+builder.Services.AddScoped<IAddNewOrder, AddNewOrder>();
+builder.Services.AddScoped<IGetUserOrdersService, GetUserOrdersService>();
+builder.Services.AddScoped<IGetOrdersForAdminService, GetOrdersForAdminService>();
+builder.Services.AddScoped<IGetRequestPayForAdminService, GetRequestPayForAdminService>();
 #region Facades
 // facades
 builder.Services.AddScoped<IProductFacade, ProductFacade>();

@@ -32,6 +32,7 @@ namespace Karen_Store.Application.Services.Finance.Queries
                         IsSuccess = true,
                         Data = new RequestPayDto
                         {
+                            Id = result.Id,
                             Amount = result.Amount,
                         }
                     };
@@ -54,6 +55,7 @@ namespace Karen_Store.Application.Services.Finance.Queries
 
     public class RequestPayDto
     {
+        public long Id { get; set; }    
         public int Amount { get; set; }
     }
 }

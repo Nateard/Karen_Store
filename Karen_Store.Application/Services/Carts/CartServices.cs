@@ -232,9 +232,11 @@ namespace Karen_Store.Application.Services.Carts
                 {
                     Data = new CartDto()
                     {
+                        CartId = cart.Id,
                         UserId= userId,
                         ProductCount = cart.CartItems.Count,
                         SumAmount = cart.CartItems.Sum(p => p.Price * p.Count),
+                        
                         CartItems = cart.CartItems.Select(p => new CartItemDto
                         {
                             Image = p.Product?.ProductImages?.FirstOrDefault()?.Src ?? "",

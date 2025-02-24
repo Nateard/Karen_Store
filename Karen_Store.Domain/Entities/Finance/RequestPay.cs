@@ -1,4 +1,5 @@
 ﻿using Karen_Store.Domain.Entities.Common;
+using Karen_Store.Domain.Entities.Orders;
 using Karen_Store.Domain.Entities.Users;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,8 @@ namespace Karen_Store.Domain.Entities.Finance
         public bool IsPay { get; set; }
         public DateTime? PayDate { get; set; }
         public string Authority { get; set; }
-        public long RefId { get; set; } 
+        public long RefId { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
 
     }
 }

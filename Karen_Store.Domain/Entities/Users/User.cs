@@ -1,4 +1,5 @@
 ﻿using Karen_Store.Domain.Entities.Common;
+using Karen_Store.Domain.Entities.Orders;
 
 namespace Karen_Store.Domain.Entities.Users
 {
@@ -12,6 +13,7 @@ namespace Karen_Store.Domain.Entities.Users
         public bool IsActive { get; set; }
         //public int Age { get; set; }
         // public decimal Balance { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
         public ICollection<UserInRole> UserInRole { get; set; }
     }
 }

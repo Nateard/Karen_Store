@@ -31,6 +31,15 @@ namespace Karen_Store.Persistence.Context
         public DbSet<OrderDetail> OrderDetails { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Order>()
+                .HasOne(p => p.User)
+                .WithMany(p => p.Orders)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Order>()
+               .HasOne(p => p.RequestPay)
+               .WithMany(p => p.Orders)
+               .OnDelete(DeleteBehavior.NoAction);
+
             SeedData(modelBuilder);
             DataQueryFilter(modelBuilder);
             modelBuilder.Entity<User>().HasIndex(u => u.Email).IsUnique();
